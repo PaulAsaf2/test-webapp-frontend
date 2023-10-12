@@ -1,2 +1,187 @@
 body {
+  font-family: "Open Sans", Tahoma, Verdana, sans-serif;
+  font-size: 14px;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, p, a, button, img, input {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+table {
+  border-collapse: collapse;
+  border: thin solid #dadada;
+}
+
+td, tr, th {
+  /* outline: thin solid green; */
+  text-align: center;
+}
+
+td, th {
+  padding: 10px;
+}
+
+th {
+  background-color: #f0f0f0;
+  border: thin solid #dadada;
+  font-weight: 400;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: auto;
+}
+
+/* ----- HEADER ----- */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 30px;
+  /* outline: thin solid red; */
+}
+
+.header_item {
+  align-self: stretch;
+  padding: 12px 0 0 0 ;
+}
+
+.header_item:hover {
+  border-bottom: 3px solid #0082fc;
+  color: #0082fc;
+}
+
+.header__logo {
+  padding: 10px 0;
+}
+
+.header__forum {
+  margin-left: auto;
+}
+
+.header_icon {
+  padding-right: 5px;
+}
+
+/* ----- SUB HEADER ----- */
+
+.sub-header {
+  background-color: aquamarine;
+  background-color: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sub-header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* outline: thin solid red; */
+}
+
+.sub-header_title {
+  align-self: stretch;
+  padding-top: 12px;
+  border-bottom: 3px solid #0082fc;
+  color: #0082fc;
+}
+
+.sub-header_user-container {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.sub-header_icon {
+  padding: 5px;
+}
+
+/* ----- MAIN ----- */
+
+.main {
+  background-color: rgb(235, 238, 240);
+  padding: 20px;
+}
+
+/* ----- PRODUCTS ----- */
+
+.products {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.products_title-container {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0 0 15px 0;
+}
+
+.products_title {
+  padding-bottom: 12px;
+  border-bottom: 3px solid #0082fc;
+}
+
+/* ----- TABLE ----- */
+
+.table {
+  /* outline: thin solid green; */
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+
+.table_title {
+  color: #0082fc;
+  font-size: 16px;
+  padding: 10px 0;
+  text-align: left;
+}
+
+.table_title-row {
+  background-color: #e5eaee;
+}
+
+.table_col {
+  width: 50px;
+}
+
+.main-table-container {
+  padding: 0;
+}
+
+.main-table {
+  width: 100%;
+  border: none;
+  /* outline: thin solid green; */
+}
+
+.td-name {
+  text-align: left;
+}
+
+.td-progress {
+  background-color: rgb(113, 209, 17);
+  width: 25%;
+}
+
+.main-table-out-container {
+  visibility: hidden;
+  position: absolute;
+  /* height: 0; */
+  /* transform: scale(0); */
+}
+
+.main-table-out-container-show {
+  visibility: visible;
+  position: relative;
+  /* height: auto; */
 }
