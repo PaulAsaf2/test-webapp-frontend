@@ -86,6 +86,8 @@
         </span>
       </div>
 
+      <!-- ----- ПЕРВАЯ ТАБЛИЦА ------ -->
+
       <table class="table">
 
         <colgroup>
@@ -188,7 +190,7 @@
                 </thead>
 
                 <tbody>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer1(event)">
                     <td>📕</td>
                     <td></td>
                     <td class="td-name">Обработчик 2 этап v2</td>
@@ -199,7 +201,7 @@
                     <td>0</td>
                     <td>1</td>
                   </tr>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer1(event)">
                     <td>📕</td>
                     <td></td>
                     <td class="td-name">Обработчик 1 этап v2</td>
@@ -210,7 +212,7 @@
                     <td>0</td>
                     <td>1</td>
                   </tr>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer1(event)">
                     <td>✅</td>
                     <td>
                       <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
@@ -234,6 +236,52 @@
           </tr>
         </tbody>
       </table>
+
+      <!-- ----- ДИАЛОГОВОЕ ОКНО ----- -->
+
+      <section class="tab_container" id="tab-1">
+
+        <div class="tab_btn-container">
+          <button class="tab_button" id="btn_setting" onclick="openTab(event, 'tab_setting')">
+            Настройки
+          </button>
+          <button class="tab_button" onclick="openTab(event, 'tab_log')">
+            Лог
+          </button>
+        </div>
+
+        <table class="tab tab_setting"  id="tab_setting">
+          <tr>
+            <td class="tab_setting_item">Сколько делать</td>
+            <td class="tab_setting_item"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tab_setting_item">Максимум потоков</td>
+            <td class="tab_setting_item"><input type="text"></td>
+          </tr>
+          <tr>
+            <td class="tab_setting_item">Приоритет</td>
+            <td class="tab_setting_item">
+              <select name="priority" id="priority">
+                <option value="low">Низкий</option>
+                <option value="average">Средний</option>
+                <option value="high">Высокий</option>
+                <option value="critical">Критический</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+
+        <section class="tab" id="tab_log">
+          <ul>
+            <li>i 12:39:21 467|7 платных результата | эльдоради</li>
+            <li>i 12:39:21 467|7 платных результата | эльдоради</li>
+          </ul>
+        </section>
+
+      </section>
+
+      <!-- ----- ВТОРАЯ ТАБЛИЦА ----- -->
 
       <table class="table">
 
@@ -337,7 +385,7 @@
                 </thead>
 
                 <tbody>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer2(event)">
                     <td>📕</td>
                     <td></td>
                     <td>Обработчик 2 этап v2</td>
@@ -348,7 +396,7 @@
                     <td>0</td>
                     <td>1</td>
                   </tr>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer2(event)">
                     <td>📕</td>
                     <td></td>
                     <td>Обработчик 1 этап v2</td>
@@ -359,7 +407,7 @@
                     <td>0</td>
                     <td>1</td>
                   </tr>
-                  <tr>
+                  <tr role="button" onClick="handleOpenTabContainer2(event)">
                     <td>✅</td>
                     <td>
                       <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"
@@ -383,9 +431,6 @@
           </tr>
         </tbody>
       </table>
-
-    </section>
-
 
   </main>
 

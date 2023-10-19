@@ -4,7 +4,16 @@ body {
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, p, a, button, img, input {
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+button,
+img,
+input {
   margin: 0;
   font-size: 14px;
   font-weight: 400;
@@ -15,12 +24,15 @@ table {
   border: thin solid #dadada;
 }
 
-td, tr, th {
+td,
+tr,
+th {
   /* outline: thin solid green; */
   text-align: center;
 }
 
-td, th {
+td,
+th {
   padding: 10px;
 }
 
@@ -34,6 +46,13 @@ th {
 a {
   text-decoration: none;
   color: black;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .container {
@@ -54,7 +73,7 @@ a {
 
 .header_item {
   align-self: stretch;
-  padding: 12px 0 0 0 ;
+  padding: 12px 0 0 0;
 }
 
 .header_item:hover {
@@ -184,4 +203,57 @@ a {
   visibility: visible;
   position: relative;
   /* height: auto; */
+}
+
+/* ----- TAB ----- */
+
+.tab_container {
+  background-color: #e5eaee;
+  margin: 10px 0 0 0;
+}
+
+.tab_btn-container {
+  overflow: hidden;
+}
+
+.tab {
+  display: none;
+  padding: 10px;
+}
+
+.tab_button {
+  padding: 10px;
+  border-top: 1.5px solid #c0c0c0;
+  border-right: 1.5px solid #c0c0c0;
+  border-left: 1.5px solid #c0c0c0;
+  border-bottom: 1.5px solid #c0c0c0;
+  float: left;
+}
+
+.tab_button_active {
+  border-bottom: none;
+}
+
+/* .tab_label {
+  min-width: 500px;
+  background-color: #0082fc;
+} */
+
+.tab_setting {
+  margin: -1.5px 0 0 0;
+  border: 1.5px solid #c0c0c0;
+}
+
+.tab_setting_body {
+  padding: 50px;
+  margin: 50px;
+}
+
+.tab_setting_item {
+  text-align: left;
+  padding: 5px 5px 5px 10px;
+}
+
+.tab_setting_item_last {
+
 }
