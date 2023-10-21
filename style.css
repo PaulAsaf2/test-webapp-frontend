@@ -193,10 +193,7 @@ li {
 }
 
 .main-table-out-container {
-  visibility: hidden;
-  position: absolute;
-  /* height: 0; */
-  /* transform: scale(0); */
+  /* visibility: hidden; */
 }
 
 .main-table-out-container-show {
