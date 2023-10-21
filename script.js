@@ -62,6 +62,38 @@ function addTable(table) {
   products.append(table)
 }
 
+function addRow(rowElement, tableElement) {
+  const tableBody = tableElement.querySelector('.table_body')
+  tableBody.append(rowElement)
+}
+
+function createRow(tableElement, dbRow) {
+  const rowTemplate = document.querySelector('#row').content
+  const rowElement = rowTemplate.querySelector('tr').cloneNode(true)
+
+  const status = rowElement.querySelector('.td-status')
+  const browser = rowElement.querySelector('.td-browser')
+  const name = rowElement.querySelector('.td-name')
+  const setting = rowElement.querySelector('.td-setting')
+  const progress = rowElement.querySelector('.td-progress')
+  const done = rowElement.querySelector('.td-done')
+  const tries = rowElement.querySelector('.td-tries')
+  const streams = rowElement.querySelector('.td-streams')
+  const maximum = rowElement.querySelector('.td-maximum')
+
+  status.textContent = dbRow.status
+  browser.textContent = dbRow.browser
+  name.textContent = dbRow.taskName
+  setting.textContent = dbRow.setting
+  progress.textContent = dbRow.progress
+  done.textContent = dbRow.doneSuccessfully
+  tries.textContent = dbRow.numberOfTries
+  streams.textContent = dbRow.streams
+  maximum.textContent = dbRow.maximum
+
+  addRow(rowElement, tableElement)
+}
+
 function createTable(dbRow) {
   const tableTemplate = document.querySelector('#table').content
   const tableElement = tableTemplate.querySelector('.table').cloneNode(true)
@@ -71,23 +103,27 @@ function createTable(dbRow) {
   tableTitle.textContent = dbRow.serverName
 
   addTable(tableElement)
+  createRow(tableElement, dbRow)
 }
 
 function searchCurrentTable() {
   serverData.forEach((dbRow) => {
-    // если нет таблиц, создай её и выйди
     const allTables = Array.from(document.querySelectorAll('.table'))
     if (allTables.length < 1) {
       createTable(dbRow)
       return
     }
-    // получи таблицу, если она есть
+
     const currentTable = allTables.find((tableNode) => {
       return tableNode.id === dbRow.id
     })
 
-    // если не нашёл таблицу, создай новую
-    currentTable ?? createTable(dbRow)
+    if (typeof currentTable === 'undefined') {
+      createTable(dbRow)
+      return
+    } else {
+      createRow(currentTable, dbRow)
+    }
   })
 }
 
