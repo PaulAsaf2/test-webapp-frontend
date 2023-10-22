@@ -27,7 +27,6 @@ table {
 td,
 tr,
 th {
-  /* outline: thin solid green; */
   text-align: center;
 }
 
@@ -59,6 +58,15 @@ li {
   max-width: 1280px;
   padding: 0 20px;
   margin: auto;
+}
+
+button {
+  border: none;
+  padding: 0;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /* ----- HEADER ----- */
@@ -153,20 +161,30 @@ li {
 /* ----- TABLE ----- */
 
 .table {
-  /* outline: thin solid green; */
   width: 100%;
   margin: 20px 0 0 0;
 }
 
 .table_title {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
   color: #0082fc;
-  font-size: 16px;
   padding: 10px 0;
   text-align: left;
 }
 
 .table_title-row {
   background-color: #e5eaee;
+  cursor: pointer;
+}
+
+.table_title-text {
+  font-size: 16px;
+}
+
+.table_title_change-text {
+  padding: 4px 0 0 0;
   cursor: pointer;
 }
 
@@ -181,7 +199,12 @@ li {
 .main-table {
   width: 100%;
   border: none;
-  /* outline: thin solid green; */
+  border-collapse: separate;
+  border-spacing: 0 5px;
+}
+
+.table_row > div {
+  margin-bottom: 10px;
 }
 
 .table_row-select {
