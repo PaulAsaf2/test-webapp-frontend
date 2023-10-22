@@ -189,7 +189,7 @@
 
                   <tbody class="table_body">
                     <template id="row">
-                      <tr role="button">
+                      <tr class="table_row" role="button">
                         <td class="td-status"></td>
                         <td class="td-browser"></td>
                         <td class="td-name"></td>
@@ -211,61 +211,64 @@
 
   </main>
 
-  <div class="context-menu">
-    <ul class="context-menu_list">
-      <li class="context-menu_item">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-          fill="none" viewBox="0 0 20 20" width="16px" height="16px">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
-        </svg>
-        Настройки
-      </li>
-      <li class="context-menu_item">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor" viewBox="0 0 14 16" width="16px" height="16px">
-          <path d="M0 .984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L1.506.139A1 1 0 0 0 0 .984Z" />
-        </svg>
-        Запустить
-      </li>
-      <li class="context-menu_item">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve" width="16px"
-          height="16px">
-          <circle style="fill:#1046aa;" cx="29" cy="29" r="29" />
-          <g>
-            <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
-            <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
-          </g>
-        </svg>
-        Остановить
-      </li>
-      <li class="context-menu_item">
-        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve" width="16px"
-          height="16px">
-          <circle style="fill:#cf2121;" cx="29" cy="29" r="29" />
-          <g>
-            <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
-            <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
-          </g>
-        </svg>
-        Прервать
-      </li>
-      <div class="context-menu_divide-line"></div>
-      <li class="context-menu_item">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px" y="0px" viewBox="0 0 60.963 60.842" style="enable-background:new 0 0 60.963 60.842;"
-          xml:space="preserve" width="16px" height="16px">
-          <path style="fill:#cf2121;" d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
+  <div class="popup">
+    <div class="context-menu">
+      <ul class="context-menu_list">
+        <li class="context-menu_item">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="none" viewBox="0 0 20 20" width="16px" height="16px">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
+          </svg>
+          Настройки
+        </li>
+        <li class="context-menu_item">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor" viewBox="0 0 14 16" width="16px" height="16px">
+            <path
+              d="M0 .984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L1.506.139A1 1 0 0 0 0 .984Z" />
+          </svg>
+          Запустить
+        </li>
+        <li class="context-menu_item">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve"
+            width="16px" height="16px">
+            <circle style="fill:#1046aa;" cx="29" cy="29" r="29" />
+            <g>
+              <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
+              <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
+            </g>
+          </svg>
+          Остановить
+        </li>
+        <li class="context-menu_item">
+          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve"
+            width="16px" height="16px">
+            <circle style="fill:#cf2121;" cx="29" cy="29" r="29" />
+            <g>
+              <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
+              <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
+            </g>
+          </svg>
+          Прервать
+        </li>
+        <div class="context-menu_divide-line"></div>
+        <li class="context-menu_item">
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 60.963 60.842" style="enable-background:new 0 0 60.963 60.842;"
+            xml:space="preserve" width="16px" height="16px">
+            <path style="fill:#cf2121;" d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
        c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
        l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
        l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
        C61.42,57.647,61.42,54.687,59.595,52.861z" />
-        </svg>
-        Удалить
-      </li>
-    </ul>
+          </svg>
+          Удалить
+        </li>
+      </ul>
+    </div>
   </div>
 
   <script type="module" src="script.js"></script>

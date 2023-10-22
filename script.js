@@ -67,6 +67,55 @@ function addRow(rowElement, tableElement) {
   tableBody.append(rowElement)
 }
 
+// КОНТЕКСТНОЕ МЕНЮ ---------------------
+
+function closeContextMenu() {
+  document.querySelector('.context-menu').style.display = 'none'
+  document.querySelector('.popup').style.display = 'none'
+
+  const tableRow = Array.from(document.querySelectorAll('.table_row'))
+  tableRow.forEach((row) => {
+    row.classList.remove('table_row-select')
+  })
+}
+
+(function () {
+  const popup = document.querySelector('.popup')
+  popup.addEventListener('click', function(event) {
+    if (event.target === event.currentTarget) {
+      closeContextMenu()
+    }
+  })
+})()
+
+function contextMenuHandler() {
+  const contextMenu = document.querySelector('.context-menu')
+  contextMenu.addEventListener('contextmenu', function(event) {
+    event.preventDefault()
+  })
+
+  const menuItems = Array.from(document.querySelectorAll('.context-menu_item'))
+  menuItems.forEach(item => item.addEventListener('click', closeContextMenu.bind(null)))
+}
+
+function openContextMenu(event) {
+  event.preventDefault()
+
+  event.currentTarget.classList.add('table_row-select')
+
+  const popup = document.querySelector('.popup')
+  popup.style.display = 'block'
+
+  const contextMenu = document.querySelector('.context-menu')
+  contextMenu.style.display = 'block'
+  contextMenu.style.left = event.pageX + 'px'
+  contextMenu.style.top = event.pageY + 'px'
+
+  contextMenuHandler()
+}
+
+// --------------------------------------
+
 function createRow(tableElement, dbRow) {
   const rowTemplate = document.querySelector('#row').content
   const rowElement = rowTemplate.querySelector('tr').cloneNode(true)
@@ -91,9 +140,7 @@ function createRow(tableElement, dbRow) {
   streams.textContent = dbRow.streams
   maximum.textContent = dbRow.maximum
 
-  rowElement.addEventListener('contextmenu', function(event) {
-    event.preventDefault()
-  })
+  rowElement.addEventListener('contextmenu', openContextMenu.bind(null))
 
   addRow(rowElement, tableElement)
 }
@@ -108,7 +155,7 @@ function createTable(dbRow) {
   tableElement.id = dbRow.id
   tableTitle.textContent = dbRow.serverName
 
-  tableTitleRow.addEventListener('click', function() {
+  tableTitleRow.addEventListener('click', function () {
     mainTable.classList.toggle('main-table-out-container-show')
   })
 
