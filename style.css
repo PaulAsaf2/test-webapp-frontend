@@ -255,3 +255,39 @@ li {
 .tab_setting_item_last {
 
 }
+
+/* ----- CONTEXT MENU ----- */
+
+.context-menu {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+}
+
+.context-menu_list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.context-menu_item {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: medium;
+  color: #5a5a5a;
+  cursor: pointer;
+}
+
+.context-menu_item:hover {
+  color: black;
+}
+
+.context-menu_divide-line {
+  height: 1px;
+  background-color: lightgrey;
+}

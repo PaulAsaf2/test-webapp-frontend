@@ -91,6 +91,10 @@ function createRow(tableElement, dbRow) {
   streams.textContent = dbRow.streams
   maximum.textContent = dbRow.maximum
 
+  rowElement.addEventListener('contextmenu', function(event) {
+    event.preventDefault()
+  })
+
   addRow(rowElement, tableElement)
 }
 
