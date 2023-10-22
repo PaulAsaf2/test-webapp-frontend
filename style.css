@@ -167,6 +167,7 @@ li {
 
 .table_title-row {
   background-color: #e5eaee;
+  cursor: pointer;
 }
 
 .table_col {
@@ -193,13 +194,13 @@ li {
 }
 
 .main-table-out-container {
-  /* visibility: hidden; */
+  visibility: hidden;
+  position: absolute;
 }
 
 .main-table-out-container-show {
   visibility: visible;
   position: relative;
-  /* height: auto; */
 }
 
 /* ----- TAB ----- */

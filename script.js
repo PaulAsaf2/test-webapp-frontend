@@ -98,9 +98,15 @@ function createTable(dbRow) {
   const tableTemplate = document.querySelector('#table').content
   const tableElement = tableTemplate.querySelector('.table').cloneNode(true)
   const tableTitle = tableElement.querySelector('.table_title')
+  const tableTitleRow = tableElement.querySelector('.table_title-row')
+  const mainTable = tableElement.querySelector('.main-table-out-container')
 
   tableElement.id = dbRow.id
   tableTitle.textContent = dbRow.serverName
+
+  tableTitleRow.addEventListener('click', function() {
+    mainTable.classList.toggle('main-table-out-container-show')
+  })
 
   addTable(tableElement)
   createRow(tableElement, dbRow)
