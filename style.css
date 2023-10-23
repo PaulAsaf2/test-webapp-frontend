@@ -168,7 +168,7 @@ button:hover {
 .table_title {
   display: flex;
   align-items: center;
-  column-gap: 4px;
+  column-gap: 10px;
   color: #0082fc;
   padding: 10px 0;
   text-align: left;
@@ -186,6 +186,17 @@ button:hover {
 .table_title_change-text {
   padding: 4px 0 0 0;
   cursor: pointer;
+}
+
+.table_title_cansel,
+.table_title_done,
+.table_title-input {
+  cursor: pointer;
+  display: none;
+}
+
+.table_title_done {
+  cursor: default;
 }
 
 .table_col {

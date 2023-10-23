@@ -81,7 +81,7 @@ function closeContextMenu() {
 
 (function () {
   const popup = document.querySelector('.popup')
-  popup.addEventListener('click', function(event) {
+  popup.addEventListener('click', function (event) {
     if (event.target === event.currentTarget) {
       closeContextMenu()
     }
@@ -90,7 +90,7 @@ function closeContextMenu() {
 
 function contextMenuHandler() {
   const contextMenu = document.querySelector('.context-menu')
-  contextMenu.addEventListener('contextmenu', function(event) {
+  contextMenu.addEventListener('contextmenu', function (event) {
     event.preventDefault()
   })
 
@@ -145,13 +145,49 @@ function createRow(tableElement, dbRow) {
   addRow(rowElement, tableElement)
 }
 
+function changeServerName(event) {
+  event.stopPropagation();
+
+  const nameContainer = event.currentTarget.parentElement
+  const serverName = nameContainer.querySelector('.table_title-text')
+  const input = nameContainer.querySelector('.table_title-input')
+  const changeBtn = nameContainer.querySelector('.table_title_change-text')
+  const canselBtn = nameContainer.querySelector('.table_title_cansel')
+  const doneBtn = nameContainer.querySelector('.table_title_done')
+
+  serverName.style.display = 'none'
+
+  input.style.display = 'block'
+  input.setAttribute('value', serverName.textContent)
+
+  changeBtn.style.display = 'none';
+  canselBtn.style.display = 'block';
+  doneBtn.style.display = 'block';
+
+  canselBtn.addEventListener('click', function(event) {
+    event.stopPropagation()
+    changeBtn.style.display = 'block';
+    canselBtn.style.display = 'none';
+    doneBtn.style.display = 'none';
+    serverName.style.display = 'block'
+    input.style.display = 'none'
+  })
+
+  doneBtn.addEventListener('click', function(event) {
+    event.stopPropagation()
+  })
+  input.addEventListener('click', function(event) {
+    event.stopPropagation()
+  })
+}
+
 function createTable(dbRow) {
   const tableTemplate = document.querySelector('#table').content
   const tableElement = tableTemplate.querySelector('.table').cloneNode(true)
+  const mainTable = tableElement.querySelector('.main-table-out-container')
   const tableTitleRow = tableElement.querySelector('.table_title-row')
   const tableTitleText = tableElement.querySelector('.table_title-text')
-  // const tableTitle = tableElement.querySelector('.table_title')
-  const mainTable = tableElement.querySelector('.main-table-out-container')
+  const changeServerNameBtn = tableElement.querySelector('.table_title_change-text')
 
   tableElement.id = dbRow.id
   tableTitleText.textContent = dbRow.serverName
@@ -159,6 +195,8 @@ function createTable(dbRow) {
   tableTitleRow.addEventListener('click', function () {
     mainTable.classList.toggle('main-table-out-container-show')
   })
+
+  changeServerNameBtn.addEventListener('click', changeServerName.bind(null))
 
   addTable(tableElement)
   createRow(tableElement, dbRow)
@@ -184,6 +222,8 @@ function searchCurrentTable() {
     }
   })
 }
+
+
 
 searchCurrentTable()
 
