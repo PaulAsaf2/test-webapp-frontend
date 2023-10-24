@@ -95,13 +95,17 @@ function contextMenuHandler() {
   })
 
   const menuItems = Array.from(document.querySelectorAll('.context-menu_item'))
-  menuItems.forEach(item => item.addEventListener('click', closeContextMenu.bind(null)))
+  menuItems.forEach(item => item.addEventListener('click', closeContextMenu))
+}
+
+function handleSelectRow(row) {
+  row.classList.add('table_row-select')
 }
 
 function openContextMenu(event) {
   event.preventDefault()
 
-  event.currentTarget.classList.add('table_row-select')
+  const row = event.currentTarget
 
   const popup = document.querySelector('.popup')
   popup.style.display = 'block'
@@ -111,7 +115,26 @@ function openContextMenu(event) {
   contextMenu.style.left = event.pageX + 'px'
   contextMenu.style.top = event.pageY + 'px'
 
+  handleSelectRow(row)
   contextMenuHandler()
+}
+
+function openTabMenu(tab, tableRow) {
+  const table = tableRow.parentElement
+  table.append(tab)
+}
+
+function createTabMenu(event) {
+  const tableRow = event.currentTarget
+  const table = tableRow.parentElement
+  let tab = table.querySelector('.tab_row')
+  if (tab) return
+
+  const tabTemplate = document.querySelector('#tab').content
+  const tabElement = tabTemplate.querySelector('.tab_row').cloneNode(true)
+
+  openTabMenu(tabElement, tableRow)
+  handleSelectRow(tableRow)
 }
 
 // --------------------------------------
@@ -141,6 +164,7 @@ function createRow(tableElement, dbRow) {
   maximum.textContent = dbRow.maximum
 
   rowElement.addEventListener('contextmenu', openContextMenu.bind(null))
+  rowElement.addEventListener('click', createTabMenu.bind(null))
 
   addRow(rowElement, tableElement)
 }
@@ -164,7 +188,7 @@ function changeServerName(event) {
   canselBtn.style.display = 'block';
   doneBtn.style.display = 'block';
 
-  canselBtn.addEventListener('click', function(event) {
+  canselBtn.addEventListener('click', function (event) {
     event.stopPropagation()
     changeBtn.style.display = 'block';
     canselBtn.style.display = 'none';
@@ -173,10 +197,10 @@ function changeServerName(event) {
     input.style.display = 'none'
   })
 
-  doneBtn.addEventListener('click', function(event) {
+  doneBtn.addEventListener('click', function (event) {
     event.stopPropagation()
   })
-  input.addEventListener('click', function(event) {
+  input.addEventListener('click', function (event) {
     event.stopPropagation()
   })
 }
@@ -223,8 +247,6 @@ function searchCurrentTable() {
   })
 }
 
-
-
 searchCurrentTable()
 
 
@@ -256,33 +278,3 @@ searchCurrentTable()
 //   console.log(event.currentTarget.id);
 //   event.currentTarget.classList.add('tab_button_active')
 // }
-
-
-// const serverData = [
-//   {
-//     id: '1',
-//     userId: '1',
-//     name: 'Название сервера 1',
-//     status: 'stop',
-//     browser: 'mozilla',
-//     taskName: 'Проект цвет круг по краям новый генератор',
-//     progress: '100%',
-//     doneSuccessfully: '830',
-//     numberOfTries: '2',
-//     streams: '0',
-//     maximum: '1',
-//   },
-//   {
-//     id: '2',
-//     userId: '1',
-//     name: 'Название сервера 2',
-//     status: 'stop',
-//     browser: 'chrome',
-//     taskName: 'Обработчик 2 этап v2',
-//     progress: '100%',
-//     doneSuccessfully: '4',
-//     numberOfTries: '',
-//     streams: '1',
-//     maximum: '1',
-//   },
-// ]

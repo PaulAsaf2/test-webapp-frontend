@@ -253,7 +253,7 @@ button:hover {
 }
 
 .tab {
-  display: none;
+  /* display: none; */
   padding: 10px;
 }
 
