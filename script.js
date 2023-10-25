@@ -67,16 +67,26 @@ function addRow(rowElement, tableElement) {
   tableBody.append(rowElement)
 }
 
+// ОБРАБОТКА ВЫДЕЛЕНИЯ СТРОКИ
+
+function addSelectRow(row) {
+  row.classList.add('table_row-select')
+}
+
+function removeSelectRow() {
+  const tableRow = Array.from(document.querySelectorAll('.table_row'))
+  tableRow.forEach((row) => {
+    row.classList.remove('table_row-select')
+  })
+}
+
 // КОНТЕКСТНОЕ МЕНЮ ---------------------
 
 function closeContextMenu() {
   document.querySelector('.context-menu').style.display = 'none'
   document.querySelector('.popup').style.display = 'none'
 
-  const tableRow = Array.from(document.querySelectorAll('.table_row'))
-  tableRow.forEach((row) => {
-    row.classList.remove('table_row-select')
-  })
+  removeSelectRow()
 }
 
 (function () {
@@ -98,43 +108,102 @@ function contextMenuHandler() {
   menuItems.forEach(item => item.addEventListener('click', closeContextMenu))
 }
 
-function handleSelectRow(row) {
-  row.classList.add('table_row-select')
-}
-
 function openContextMenu(event) {
   event.preventDefault()
 
   const row = event.currentTarget
-
   const popup = document.querySelector('.popup')
-  popup.style.display = 'block'
-
   const contextMenu = document.querySelector('.context-menu')
+
+  popup.style.display = 'block'
   contextMenu.style.display = 'block'
   contextMenu.style.left = event.pageX + 'px'
   contextMenu.style.top = event.pageY + 'px'
 
-  handleSelectRow(row)
+  addSelectRow(row)
   contextMenuHandler()
 }
+
+// МЕНЮ НАСТРОЕК ---------------------
 
 function openTabMenu(tab, tableRow) {
   const table = tableRow.parentElement
   table.append(tab)
 }
 
+function handleTabMenu(tabElement, tableRow) {
+  let rowIsSelect = tableRow.classList.contains('table_row-select')
+  if (rowIsSelect) {
+    tableRow.addEventListener('click', function () {
+      tabElement.remove()
+      // removeSelectRow()
+    })
+  }
+}
+
+
+
 function createTabMenu(event) {
   const tableRow = event.currentTarget
+  const rowIsSelect = tableRow.classList.contains('table_row-select')
   const table = tableRow.parentElement
   let tab = table.querySelector('.tab_row')
-  if (tab) return
 
-  const tabTemplate = document.querySelector('#tab').content
-  const tabElement = tabTemplate.querySelector('.tab_row').cloneNode(true)
+  if (!rowIsSelect && !tab) {
+    addSelectRow(tableRow)
+  } else {
+    tableRow.classList.remove('table_row-select')
+  }
 
-  openTabMenu(tabElement, tableRow)
-  handleSelectRow(tableRow)
+  if (!tab) {
+    const tabTemplate = document.querySelector('#tab').content
+    const tabElement = tabTemplate.querySelector('.tab_row').cloneNode(true)
+    const tabs = Array.from(tabElement.querySelectorAll('.tab_item'))
+    const btnSetting = tabElement.querySelector('#btn_setting')
+    const btnLog = tabElement.querySelector('#btn_log')
+
+    function openTabItem(event, tabItem, tabElement) {
+      const tab = tabElement.querySelector(`#${tabItem}`)
+      tabs.forEach(tab => tab.style.display = 'none')
+      tab.style.display = 'block'
+
+      if (event.currentTarget.id === 'btn_setting') {
+        event.currentTarget.classList.add('tab_button_active')
+        event.currentTarget.classList.remove('tab_button_inactive')
+
+        const inactiveBtn = tabElement.querySelector('#btn_log')
+        inactiveBtn.classList.add('tab_button_inactive')
+
+        const patch = tabElement.querySelector('.tab_patch')
+        patch.classList.add('tab_patch-left')
+        patch.classList.remove('tab_patch-right')
+      } else {
+        event.currentTarget.classList.add('tab_button_active')
+        event.currentTarget.classList.remove('tab_button_inactive')
+
+        const inactiveBtn = tabElement.querySelector('#btn_setting')
+        inactiveBtn.classList.add('tab_button_inactive')
+
+        const patch = tabElement.querySelector('.tab_patch')
+        patch.classList.add('tab_patch-right')
+        patch.classList.remove('tab_patch-left')
+      }
+    }
+
+    btnSetting.addEventListener('click', function (event) {
+      openTabItem(event, 'tab_setting', tabElement)
+    })
+
+    btnSetting.click()
+
+    btnLog.addEventListener('click', function (event) {
+      openTabItem(event, 'tab_log', tabElement)
+    })
+
+    openTabMenu(tabElement, tableRow)
+    addSelectRow(tableRow)
+    handleTabMenu(tabElement, tableRow)
+  }
 }
 
 // --------------------------------------
@@ -248,33 +317,3 @@ function searchCurrentTable() {
 }
 
 searchCurrentTable()
-
-
-
-
-// function handleOpenTable(table) {
-//   table.classList.toggle('main-table-out-container-show');
-// }
-
-// zennoPosterTitle.addEventListener('click', function () {
-//   handleOpenTable(posterTable);
-// })
-
-// zennoBoxTitle.addEventListener('click', function () {
-//   handleOpenTable(boxTable);
-// })
-
-// document.getElementById('btn_setting').click()
-
-// // открытие внутренних вкладок
-// function openTab(event, tab) {
-//   let tabContent = document.querySelectorAll('.tab')
-//   for (let i = 0; i < tabContent.length; i++) {
-//     tabContent[i].style.display = 'none'
-//   }
-
-//   document.getElementById(tab).style.display = 'block'
-//   console.log(document.querySelector('.tab_button').classList.contains('tab_button_active'));
-//   console.log(event.currentTarget.id);
-//   event.currentTarget.classList.add('tab_button_active')
-// }

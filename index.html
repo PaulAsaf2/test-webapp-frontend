@@ -228,49 +228,56 @@
                         <td class="td-maximum"></td>
                       </tr>
                     </template>
+
                     <template id="tab">
                       <tr class="tab_row">
                         <td class="tab_td" colspan="9">
-                          <section class="tab_container" id="tab-1">
+                          <section class="tab_container">
+
                             <div class="tab_btn-container">
-                              <button class="tab_button" id="btn_setting" onclick="openTab(event, 'tab_setting')">
-                                Настройки
-                              </button>
-                              <button class="tab_button" onclick="openTab(event, 'tab_log')">
-                                Лог
-                              </button>
+                              <button class="tab_button" id="btn_setting">Настройки</button>
+                              <button class="tab_button" id="btn_log">Лог</button>
+                              <div class="tab_patch"></div>
                             </div>
-                            <table class="tab tab_setting" id="tab_setting">
-                              <tr>
-                                <td class="tab_setting_item">Сколько делать</td>
-                                <td class="tab_setting_item"><input type="text"></td>
-                              </tr>
-                              <tr>
-                                <td class="tab_setting_item">Максимум потоков</td>
-                                <td class="tab_setting_item"><input type="text"></td>
-                              </tr>
-                              <tr>
-                                <td class="tab_setting_item">Приоритет</td>
-                                <td class="tab_setting_item">
-                                  <select name="priority" id="priority">
-                                    <option value="low">Низкий</option>
-                                    <option value="average">Средний</option>
-                                    <option value="high">Высокий</option>
-                                    <option value="critical">Критический</option>
-                                  </select>
-                                </td>
-                              </tr>
+
+                            <table class="tab">
+                              <tbody id="tab_setting" class="tab_item">
+                                <tr>
+                                  <td class="tab_setting_item">Сколько делать</td>
+                                  <td class="tab_setting_item"><input type="text"></td>
+                                </tr>
+                                <tr>
+                                  <td class="tab_setting_item">Максимум потоков</td>
+                                  <td class="tab_setting_item"><input type="text"></td>
+                                </tr>
+                                <tr>
+                                  <td class="tab_setting_item">Приоритет</td>
+                                  <td class="tab_setting_item">
+                                    <select name="priority" id="priority">
+                                      <option value="low">Низкий</option>
+                                      <option value="average">Средний</option>
+                                      <option value="high">Высокий</option>
+                                      <option value="critical">Критический</option>
+                                    </select>
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tbody id="tab_log" class="tab_item">
+                                <tr>
+                                  <td colspan="2">
+                                    <ul>
+                                      <li>i 12:39:21 467|7 платных результата | эльдоради</li>
+                                      <li>i 12:39:21 467|7 платных результата | эльдоради</li>
+                                    </ul>
+                                  </td>
+                                </tr>
+                              </tbody>
                             </table>
-                            <div class="tab" id="tab_log">
-                              <ul>
-                                <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-                                <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-                              </ul>
-                            </div>
                           </section>
                         </td>
                       </tr>
                     </template>
+
                   </tbody>
                 </table>
               </td>
@@ -278,9 +285,6 @@
           </tbody>
         </table>
       </template>
-
-
-
   </main>
 
   <div class="popup">
