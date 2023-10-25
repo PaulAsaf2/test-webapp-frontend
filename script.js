@@ -73,39 +73,41 @@ function addSelectRow(row) {
   row.classList.add('table_row-select')
 }
 
-function removeSelectRow() {
-  const tableRow = Array.from(document.querySelectorAll('.table_row'))
-  tableRow.forEach((row) => {
-    row.classList.remove('table_row-select')
-  })
+function removeSelectRow(row) {
+  row.classList.remove('table_row-select')
+  // const tableRow = Array.from(document.querySelectorAll('.table_row'))
+  // tableRow.forEach((row) => {
+  //   row.classList.remove('table_row-select')
+  // })
 }
 
 // КОНТЕКСТНОЕ МЕНЮ ---------------------
 
-function closeContextMenu() {
+function closeContextMenu(row) {
   document.querySelector('.context-menu').style.display = 'none'
   document.querySelector('.popup').style.display = 'none'
 
-  removeSelectRow()
+  removeSelectRow(row)
 }
 
-(function () {
-  const popup = document.querySelector('.popup')
-  popup.addEventListener('click', function (event) {
-    if (event.target === event.currentTarget) {
-      closeContextMenu()
-    }
-  })
-})()
-
-function contextMenuHandler() {
+function contextMenuHandler(row) {
   const contextMenu = document.querySelector('.context-menu')
+  const menuItems = Array.from(document.querySelectorAll('.context-menu_item'))
+  const popup = document.querySelector('.popup')
+
   contextMenu.addEventListener('contextmenu', function (event) {
     event.preventDefault()
   })
 
-  const menuItems = Array.from(document.querySelectorAll('.context-menu_item'))
-  menuItems.forEach(item => item.addEventListener('click', closeContextMenu))
+  menuItems.forEach(item => item.addEventListener('click', function () {
+    closeContextMenu(row)
+  }))
+
+  popup.addEventListener('click', function (event) {
+    if (event.target === event.currentTarget) {
+      closeContextMenu(row)
+    }
+  })
 }
 
 function openContextMenu(event) {
@@ -114,14 +116,18 @@ function openContextMenu(event) {
   const row = event.currentTarget
   const popup = document.querySelector('.popup')
   const contextMenu = document.querySelector('.context-menu')
+  const table = row.parentElement
+  let tab = table.querySelector('.tab_row')
 
-  popup.style.display = 'block'
-  contextMenu.style.display = 'block'
-  contextMenu.style.left = event.pageX + 'px'
-  contextMenu.style.top = event.pageY + 'px'
+  if (!tab) {
+    popup.style.display = 'block'
+    contextMenu.style.display = 'block'
+    contextMenu.style.left = event.pageX + 'px'
+    contextMenu.style.top = event.pageY + 'px'
 
-  addSelectRow(row)
-  contextMenuHandler()
+    addSelectRow(row)
+    contextMenuHandler(row)
+  }
 }
 
 // МЕНЮ НАСТРОЕК ---------------------
@@ -136,12 +142,9 @@ function handleTabMenu(tabElement, tableRow) {
   if (rowIsSelect) {
     tableRow.addEventListener('click', function () {
       tabElement.remove()
-      // removeSelectRow()
     })
   }
 }
-
-
 
 function createTabMenu(event) {
   const tableRow = event.currentTarget
@@ -152,7 +155,7 @@ function createTabMenu(event) {
   if (!rowIsSelect && !tab) {
     addSelectRow(tableRow)
   } else {
-    tableRow.classList.remove('table_row-select')
+    removeSelectRow(tableRow)
   }
 
   if (!tab) {
