@@ -75,10 +75,6 @@ function addSelectRow(row) {
 
 function removeSelectRow(row) {
   row.classList.remove('table_row-select')
-  // const tableRow = Array.from(document.querySelectorAll('.table_row'))
-  // tableRow.forEach((row) => {
-  //   row.classList.remove('table_row-select')
-  // })
 }
 
 // КОНТЕКСТНОЕ МЕНЮ ---------------------
@@ -117,17 +113,17 @@ function openContextMenu(event) {
   const popup = document.querySelector('.popup')
   const contextMenu = document.querySelector('.context-menu')
   const table = row.parentElement
-  let tab = table.querySelector('.tab_row')
+  // let tab = table.querySelector('.tab_row')
 
-  if (!tab) {
-    popup.style.display = 'block'
-    contextMenu.style.display = 'block'
-    contextMenu.style.left = event.pageX + 'px'
-    contextMenu.style.top = event.pageY + 'px'
+  // if (!tab) {
+  popup.style.display = 'block'
+  contextMenu.style.display = 'block'
+  contextMenu.style.left = event.pageX + 'px'
+  contextMenu.style.top = event.pageY + 'px'
 
-    addSelectRow(row)
-    contextMenuHandler(row)
-  }
+  addSelectRow(row)
+  contextMenuHandler(row)
+  // }
 }
 
 // МЕНЮ НАСТРОЕК ---------------------
@@ -137,75 +133,86 @@ function openTabMenu(tab, tableRow) {
   table.append(tab)
 }
 
-function handleTabMenu(tabElement, tableRow) {
-  let rowIsSelect = tableRow.classList.contains('table_row-select')
-  if (rowIsSelect) {
-    tableRow.addEventListener('click', function () {
-      tabElement.remove()
-    })
+function openTabItem(event, tabItem, tabElement, tabs) {
+  const tab = tabElement.querySelector(`#${tabItem}`)
+  tabs.forEach(tab => tab.style.display = 'none')
+  tab.style.display = 'block'
+
+  if (event.currentTarget.id === 'btn_setting') {
+    event.currentTarget.classList.add('tab_button_active')
+    event.currentTarget.classList.remove('tab_button_inactive')
+
+    const inactiveBtn = tabElement.querySelector('#btn_log')
+    inactiveBtn.classList.add('tab_button_inactive')
+
+    const patch = tabElement.querySelector('.tab_patch')
+    patch.classList.add('tab_patch-left')
+    patch.classList.remove('tab_patch-right')
+  } else {
+    event.currentTarget.classList.add('tab_button_active')
+    event.currentTarget.classList.remove('tab_button_inactive')
+
+    const inactiveBtn = tabElement.querySelector('#btn_setting')
+    inactiveBtn.classList.add('tab_button_inactive')
+
+    const patch = tabElement.querySelector('.tab_patch')
+    patch.classList.add('tab_patch-right')
+    patch.classList.remove('tab_patch-left')
   }
 }
 
-function createTabMenu(event) {
+function createTabMenu(tableRow, streams, maximum) {
+  const tabTemplate = document.querySelector('#tab').content
+  const tabElement = tabTemplate.querySelector('.tab_row').cloneNode(true)
+  const tabs = Array.from(tabElement.querySelectorAll('.tab_item'))
+  const btnSetting = tabElement.querySelector('#btn_setting')
+  const btnLog = tabElement.querySelector('#btn_log')
+  const howMuchToDo = tabElement.querySelector('.tab_input_howMuchToDo')
+  const maximumFlows = tabElement.querySelector('.tab_input_maximumFlows')
+
+  howMuchToDo.value = streams.textContent
+  maximumFlows.value = maximum.textContent
+
+  btnSetting.addEventListener('click', function (event) {
+    openTabItem(event, 'tab_setting', tabElement, tabs)
+  })
+
+  btnSetting.click()
+
+  btnLog.addEventListener('click', function (event) {
+    openTabItem(event, 'tab_log', tabElement, tabs)
+  })
+
+  openTabMenu(tabElement, tableRow)
+}
+
+function checkTabMenu(event) {
   const tableRow = event.currentTarget
-  const rowIsSelect = tableRow.classList.contains('table_row-select')
+  const streams = tableRow.querySelector('.td-streams')
+  const maximum = tableRow.querySelector('.td-maximum')
   const table = tableRow.parentElement
-  let tab = table.querySelector('.tab_row')
+  let currentTab = table.querySelector('.tab_row')
 
-  if (!rowIsSelect && !tab) {
-    addSelectRow(tableRow)
+  if (!currentTab) {
+    createTabMenu(tableRow, streams, maximum)
+    tableRow.classList.add('table_row-select')
+    return
+  } else if (currentTab && (tableRow.classList.contains('table_row-select'))) {
+    currentTab.remove()
+    tableRow.classList.remove('table_row-select')
   } else {
-    removeSelectRow(tableRow)
-  }
+    const howMuchToDo = currentTab.querySelector('.tab_input_howMuchToDo')
+    const maximumFlows = currentTab.querySelector('.tab_input_maximumFlows')
 
-  if (!tab) {
-    const tabTemplate = document.querySelector('#tab').content
-    const tabElement = tabTemplate.querySelector('.tab_row').cloneNode(true)
-    const tabs = Array.from(tabElement.querySelectorAll('.tab_item'))
-    const btnSetting = tabElement.querySelector('#btn_setting')
-    const btnLog = tabElement.querySelector('#btn_log')
+    howMuchToDo.value = streams.textContent
+    maximumFlows.value = maximum.textContent
 
-    function openTabItem(event, tabItem, tabElement) {
-      const tab = tabElement.querySelector(`#${tabItem}`)
-      tabs.forEach(tab => tab.style.display = 'none')
-      tab.style.display = 'block'
-
-      if (event.currentTarget.id === 'btn_setting') {
-        event.currentTarget.classList.add('tab_button_active')
-        event.currentTarget.classList.remove('tab_button_inactive')
-
-        const inactiveBtn = tabElement.querySelector('#btn_log')
-        inactiveBtn.classList.add('tab_button_inactive')
-
-        const patch = tabElement.querySelector('.tab_patch')
-        patch.classList.add('tab_patch-left')
-        patch.classList.remove('tab_patch-right')
-      } else {
-        event.currentTarget.classList.add('tab_button_active')
-        event.currentTarget.classList.remove('tab_button_inactive')
-
-        const inactiveBtn = tabElement.querySelector('#btn_setting')
-        inactiveBtn.classList.add('tab_button_inactive')
-
-        const patch = tabElement.querySelector('.tab_patch')
-        patch.classList.add('tab_patch-right')
-        patch.classList.remove('tab_patch-left')
-      }
-    }
-
-    btnSetting.addEventListener('click', function (event) {
-      openTabItem(event, 'tab_setting', tabElement)
+    const allRows = Array.from(table.querySelectorAll('.table_row'))
+    allRows.forEach((row) => {
+      row.classList.remove('table_row-select')
     })
 
-    btnSetting.click()
-
-    btnLog.addEventListener('click', function (event) {
-      openTabItem(event, 'tab_log', tabElement)
-    })
-
-    openTabMenu(tabElement, tableRow)
-    addSelectRow(tableRow)
-    handleTabMenu(tabElement, tableRow)
+    tableRow.classList.add('table_row-select')
   }
 }
 
@@ -235,8 +242,9 @@ function createRow(tableElement, dbRow) {
   streams.textContent = dbRow.streams
   maximum.textContent = dbRow.maximum
 
+  rowElement.style.cursor = 'pointer'
   rowElement.addEventListener('contextmenu', openContextMenu.bind(null))
-  rowElement.addEventListener('click', createTabMenu.bind(null))
+  rowElement.addEventListener('click', checkTabMenu.bind(null))
 
   addRow(rowElement, tableElement)
 }
@@ -284,12 +292,14 @@ function createTable(dbRow) {
   const tableTitleRow = tableElement.querySelector('.table_title-row')
   const tableTitleText = tableElement.querySelector('.table_title-text')
   const changeServerNameBtn = tableElement.querySelector('.table_title_change-text')
+  const plusBtn = tableElement.querySelector('.plus-minus-toggle')
 
   tableElement.id = dbRow.id
   tableTitleText.textContent = dbRow.serverName
 
   tableTitleRow.addEventListener('click', function () {
     mainTable.classList.toggle('main-table-out-container-show')
+    plusBtn.classList.toggle('collapsed')
   })
 
   changeServerNameBtn.addEventListener('click', changeServerName.bind(null))
