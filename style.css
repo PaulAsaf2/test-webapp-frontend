@@ -22,6 +22,7 @@ input {
 table {
   border-collapse: collapse;
   border: thin solid #dadada;
+  border: none;
 }
 
 td,
@@ -158,7 +159,7 @@ button:hover {
   border-bottom: 3px solid #0082fc;
 }
 
-/* ----- TABLE ----- */
+/* TABLE TABLE TABLE TABLE */
 
 .table {
   width: 100%;
@@ -217,11 +218,17 @@ body {
   cursor: pointer;
 }
 
+.table_title-row_light {
+  background-color: #ffffff;
+  /* background-color: #f0f4f7; */
+}
+
 .table_title-text {
   font-size: 16px;
 }
 
 .table_title_change-text {
+  background-color: #e5eaee;
   padding: 4px 0 0 0;
   cursor: pointer;
 }
@@ -248,7 +255,7 @@ body {
 .main-table {
   width: 100%;
   border: none;
-  border-collapse: separate;
+  /* border-collapse: separate; */
   border-spacing: 0 5px;
 }
 
@@ -293,20 +300,21 @@ body {
 /* ----- TAB ----- */
 
 .tab_container {
-  background-color: #e5eaee;
+  /* background-color: #e5eaee; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
+.tab_td {
+  padding: 0;
+}
+
 .tab {
+  background-color: #e5eaee;
   padding: 10px;
   margin: -1.5px 0 0 0;
   border: 1px solid #c0c0c0;
-}
-
-.tab_item {
-  display: none;
 }
 
 .tab_btn-container {

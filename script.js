@@ -244,6 +244,7 @@ function createRow(tableElement, dbRow) {
   maximum.textContent = dbRow.maximum
 
   rowElement.style.cursor = 'pointer'
+  rowElement.style.borderBottom = '4px solid white'
   rowElement.addEventListener('contextmenu', openContextMenu.bind(null))
   rowElement.addEventListener('click', checkTabMenu.bind(null))
 
