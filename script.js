@@ -82,8 +82,8 @@ function removeSelectRow(row) {
 function closeContextMenu(row) {
   document.querySelector('.context-menu').style.display = 'none'
   document.querySelector('.popup').style.display = 'none'
-
-  removeSelectRow(row)
+  row.classList.remove('table_row-select-by-context-menu')
+  // removeSelectRow(row)
 }
 
 function contextMenuHandler(row) {
@@ -112,18 +112,19 @@ function openContextMenu(event) {
   const row = event.currentTarget
   const popup = document.querySelector('.popup')
   const contextMenu = document.querySelector('.context-menu')
-  const table = row.parentElement
+  // const table = row.parentElement
   // let tab = table.querySelector('.tab_row')
 
-  // if (!tab) {
   popup.style.display = 'block'
   contextMenu.style.display = 'block'
   contextMenu.style.left = event.pageX + 'px'
   contextMenu.style.top = event.pageY + 'px'
 
-  addSelectRow(row)
+  if (!(row.classList.contains('table_row-select'))) {
+    row.classList.add('table_row-select-by-context-menu')
+  }
+  // addSelectRow(row)
   contextMenuHandler(row)
-  // }
 }
 
 // МЕНЮ НАСТРОЕК ---------------------

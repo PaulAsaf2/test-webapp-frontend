@@ -260,6 +260,10 @@ body {
   background-color: #dbe2e7;
 }
 
+.table_row-select-by-context-menu {
+  background-color: #dbe7dd;
+}
+
 .td-name {
   text-align: left;
 }
