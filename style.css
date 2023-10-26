@@ -300,65 +300,62 @@ body {
 /* ----- TAB ----- */
 
 .tab_container {
-  /* background-color: #e5eaee; */
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: rgb(223, 223, 223);
+  max-width: 400px;
 }
 
-.tab_td {
-  padding: 0;
+.tab_input {
+  position: absolute;
+  opacity: 0;
 }
 
-.tab {
-  background-color: #e5eaee;
-  padding: 10px;
-  margin: -1.5px 0 0 0;
-  border: 1px solid #c0c0c0;
-}
-
-.tab_btn-container {
-  z-index: 5;
-  position: relative;
-}
-
-.tab_button {
-  padding: 10px;
-  float: left;
-}
-
-.tab_button_active {
-  border-top: 1.5px solid #c0c0c0;
-  border-left: 1.5px solid #c0c0c0;
-  border-right: 1.5px solid #c0c0c0;
-  background-color: #e5eaee;
-}
-
-.tab_button_inactive {
-  background-color: #dadcdd;
+.tab_label {
+  width: auto;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
-.tab_patch {
-  position: absolute;
-  height: 5px;
-  background-color: #e5eaee;
+.tab_label:hover {
+  background-color: #acaaaa;
 }
 
-.tab_patch-left {
-  width: 90px;
-  top: 35px;
-  left: 1px;
-}
-.tab_patch-right {
-  width: 42px;
-  top: 35px;
-  left: 93px;
+.tab_input:checked + .tab_label {
+  background-color: #cecece;
 }
 
-.tab_setting_item {
-  text-align: left;
-  padding: 5px 5px 5px 10px;
+.tab_panel {
+  display: none;
+  background-color: #cecece;
+  width: 100%;
+  order: 99;
+}
+
+.tab_input:checked + .tab_label + .tab_panel {
+  display: block;
+}
+
+.tab_setting {
+  display: flex;
+  padding: 10px;
+  column-gap: 10px;
+}
+
+.tab_inputs-label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.tab_inputs {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.tab_log {
+  padding: 10px;
 }
 
 /* ----- POPUP ----- */
