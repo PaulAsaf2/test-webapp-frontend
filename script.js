@@ -1,3 +1,18 @@
+const obj = {
+  id: "1",
+  // idServer: "1",
+  // idTask: "123",
+  status: "stop", // ok
+  browserType: "chrome", // browser
+  nametask: "Первый проект", // taskName
+  // setting: пока не делаем ,
+  // progress: пока не делаем ,
+  doneSuccessfully: "11", // ok
+  numberOfTries: "111", // ok
+  limitOfThreads: "1", // streams
+  DoneAll: "1111", // maximum
+}
+
 const serverData = [
   {
     id: '1',
