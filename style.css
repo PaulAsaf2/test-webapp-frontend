@@ -42,6 +42,10 @@ body {
   align-items: center;
 }
 
+.dropdown-item-selected {
+  background-color: #dddddd;
+}
+
 .dropdown-item:hover {
   background-color: #dddddd;
 }
@@ -73,4 +77,9 @@ body {
 
 .icon-arrow {
   background-image: url(./images/arrow.svg);
+  transition: transform .3s ease;
+}
+
+.icon-arrow-rotated {
+  transform: rotate(-180deg);
 }
