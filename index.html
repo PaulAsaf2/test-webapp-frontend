@@ -4,341 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZennoLab</title>
+  <title>Custom Dropdown</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header class="container header">
-    <a href="#" class="header__logo">
-      <svg width="116" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" class="header_icon">
-        <path
-          d="M32 16.915v-1.317l5.732-8.462h-5.085V5H41.7v1.213l-5.714 8.478h6.103v2.223H32ZM52.122 16.895c-.185.024-.425.04-.722.052a26.95 26.95 0 0 1-.932.026c-.375.005-.823 0-1.342 0h-2.17a7.29 7.29 0 0 1-1.423-.12 2.229 2.229 0 0 1-.971-.429 1.83 1.83 0 0 1-.565-.829 4.071 4.071 0 0 1-.183-1.323v-3.46c-.013-.435.05-.87.183-1.283.108-.309.301-.579.556-.777.284-.203.61-.335.953-.384.462-.074.929-.109 1.396-.104h2.368c.474-.006.947.031 1.415.111.338.054.661.186.944.386.241.184.422.441.516.735.115.375.168.768.158 1.161v2.805h-5.691v1.093a.383.383 0 0 0 .091.299.57.57 0 0 0 .352.077h5.067v1.964Zm-2.608-6.407a.34.34 0 0 0-.102-.283.608.608 0 0 0-.36-.078h-1.997a.57.57 0 0 0-.352.078.35.35 0 0 0-.091.283v1.28h2.902v-1.28ZM59.928 16.914V10.64a.383.383 0 0 0-.094-.299.566.566 0 0 0-.35-.078h-2.091v6.65h-2.996V8.369l.628-.036c.21 0 .482-.019.814-.026.331-.007.733 0 1.202 0h2.85c.46-.005.918.029 1.371.102.34.048.665.18.944.386.251.2.438.474.537.784.129.417.188.853.176 1.29v6.053l-2.991-.007ZM70.6 16.914V10.64a.383.383 0 0 0-.094-.299.566.566 0 0 0-.35-.078h-2.091v6.65h-2.997V8.369l.629-.036c.21 0 .482-.019.816-.026.334-.007.731 0 1.202 0h2.848c.459-.005.918.029 1.371.102.34.048.663.18.942.386.25.2.438.474.537.784.129.417.188.853.176 1.29v6.053l-2.99-.007ZM78.739 17c-.471.005-.941-.03-1.406-.104a2.168 2.168 0 0 1-.962-.384 1.647 1.647 0 0 1-.547-.777c-.13-.42-.19-.86-.176-1.3v-3.606a3.999 3.999 0 0 1 .176-1.29c.101-.313.291-.588.547-.787.286-.204.616-.336.962-.384a8.325 8.325 0 0 1 1.406-.103h2.699c.467-.006.934.029 1.396.103.343.05.67.18.953.384.254.198.441.473.535.787.123.418.18.854.167 1.29v3.606a4.14 4.14 0 0 1-.167 1.3 1.57 1.57 0 0 1-.535.777 2.164 2.164 0 0 1-.946.384c-.462.074-.929.109-1.396.104h-2.706Zm2.772-6.39a.38.38 0 0 0-.091-.299.614.614 0 0 0-.37-.078h-1.962a.614.614 0 0 0-.37.078.372.372 0 0 0-.092.3v3.911c0 .148.03.236.092.29.115.056.243.08.37.068h1.961a.687.687 0 0 0 .37-.068c.062-.045.092-.142.092-.29V10.61Z"
-          fill="#18A3FA"></path>
-        <path
-          d="M86.652 16.914V5h2.997v9.69h5.714v2.224h-8.71ZM105.01 16.895c-.174.024-.403.04-.686.052-.247.012-.555.021-.914.026-.359.005-.828 0-1.372 0h-2.347a7.814 7.814 0 0 1-1.554-.13 2.25 2.25 0 0 1-.972-.419 1.539 1.539 0 0 1-.507-.751 3.73 3.73 0 0 1-.148-1.128v-.846a2.66 2.66 0 0 1 .175-1.05c.118-.266.316-.485.565-.626.31-.17.65-.274.999-.307a11.96 11.96 0 0 1 1.479-.077h2.498v-1.05a.353.353 0 0 0-.094-.28.613.613 0 0 0-.37-.079h-4.457V8.368l.759-.036c.247 0 .532-.019.86-.026.326-.007.685 0 1.082 0h1.868a9.887 9.887 0 0 1 1.506.095c.346.04.677.168.962.374.25.203.431.481.519.796.117.44.171.894.158 1.35l-.009 5.974Zm-2.784-3.589h-2.514a.613.613 0 0 0-.37.078.376.376 0 0 0-.092.299v.93a.344.344 0 0 0 .1.283.64.64 0 0 0 .362.075h2.514v-1.665ZM109.938 16.982h-1.129c-.334 0-.622-.014-.869-.026-.283 0-.537-.028-.758-.051V5h2.996v3.351h2.811c.459-.006.918.028 1.372.101.336.053.655.184.935.384.253.199.44.474.534.787.123.418.179.854.167 1.29v3.465c.013.442-.043.885-.167 1.31-.097.31-.284.582-.534.78-.283.21-.61.347-.954.401a7.44 7.44 0 0 1-1.396.113h-3.008Zm3.088-6.29a.377.377 0 0 0-.091-.299.616.616 0 0 0-.371-.078h-2.386v4.534h2.386a.671.671 0 0 0 .371-.069c.061-.044.091-.14.091-.29v-3.798ZM22 5.502v8.729H12.39l8.314-10.113H.165A5.549 5.549 0 0 1 2.03 1.153 5.077 5.077 0 0 1 5.226 0H15.84l-2.503 2.912h3.785L19.13.589a5.356 5.356 0 0 1 2.092 2.021c.131.22.246.45.343.689a5.773 5.773 0 0 1 .422 1.773v.102c.01.109.014.217.014.328Z"
-          fill="#39C051"></path>
-        <path
-          d="M21.814 17.952a5.553 5.553 0 0 1-1.625 2.712 5.109 5.109 0 0 1-2.784 1.299h-.019c-.332.031-.665.037-.997.037h-11.3a5.102 5.102 0 0 1-3.56-1.61A5.647 5.647 0 0 1 0 16.64v-.04c0-2.43.016-4.858 0-7.286v-1.79h14.788L9.312 14.23H7.333l4.29-5.178H8.501l-7.274 8.9h20.587Z"
-          fill="#18A3FA">
-        </path>
-      </svg>
-    </a>
-    <a href="#" class="header__forum header_item">
-      <svg width="15" height="15" fill="none" xmlns="http://www.w3.org/2000/svg" class="header_icon">
-        <path
-          d="m7.257 11.571-.119-.071H3A2.5 2.5 0 0 1 .5 9V3A2.5 2.5 0 0 1 3 .5h9A2.5 2.5 0 0 1 14.5 3v6a2.5 2.5 0 0 1-2.5 2.5h-.5v2.617L7.257 11.57Z"
-          stroke="#1E1E1E">
-        </path>
-      </svg>
-      Форум
-    </a>
-    <a href="#" class="header_item">
-      <svg width="14" height="15" fill="none" xmlns="http://www.w3.org/2000/svg" class="header_icon">
-        <circle cx="7" cy="4" r="3.5" stroke="#1E1E1E"></circle>
-        <path d="M.5 13A2.5 2.5 0 0 1 3 10.5h8a2.5 2.5 0 0 1 2.5 2.5v1.5H.5V13Z" stroke="#1E1E1E">
-        </path>
-      </svg>
-      Личный кабинет
-    </a>
-    <a href="#" class="header_item">
-      <svg width="18" height="12" fill="none" xmlns="http://www.w3.org/2000/svg" class="header_icon">
-        <path d="M0 1a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3H0V1Z" fill="#EEEEF2"></path>
-        <path fill="#1E78DC" d="M0 4h18v4H0z"></path>
-        <path d="M0 8h18v3a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8Z" fill="#EB465A">
-        </path>
-      </svg>
-      Русский
-      <svg width="9" height="5" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="m1 1 3.5 3L8 1" stroke="#1E1E1E">
-        </path>
-      </svg>
-    </a>
-    </div>
-  </header>
 
-  <section class="container sub-header">
-    <div class="sub-header__container">
-      <h2 class="sub-header_title">Главная</h2>
-      <div class="sub-header_user-container">
-        <svg class="sub-header_icon" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="16" r="16" fill="#E6E9EC"></circle>
-          <circle cx="16" cy="11.999" r="5.333" fill="#1890FF"></circle>
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M5.624 28.18C6.744 23.488 10.964 20 16 20c5.035 0 9.255 3.488 10.375 8.18A15.937 15.937 0 0 1 16 32a15.937 15.937 0 0 1-10.376-3.82Z"
-            fill="#1890FF">
-          </path>
-        </svg>
-        Xlaber@icloud.com
-        <svg width="9" height="5" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="m1 1 3.5 3L8 1" stroke="#1E1E1E">
-          </path>
-        </svg>
+  <div class="custom-dropdown">
+
+    <div class="dropdown-header">
+      <div>
+        <i class="icon"></i>
+        <span id="selected-item"></span>
       </div>
+      <i class="icon icon-arrow"></i>
     </div>
-  </section>
 
-  <main class="main">
-    <section class="container products">
-      <div class="products_title-container">
-        <span class="products_title">
-          Мои продукты
-        </span>
+    <div class="dropdown-body">
+
+      <div class="dropdown-item">
+        <i class="icon icon-low"></i>
+        <span>Низкий</span>
+      </div>
+      <div class="dropdown-item">
+        <i class="icon icon-medium"></i>
+        <span>Средний</span>
+      </div>
+      <div class="dropdown-item">
+        <i class="icon icon-high"></i>
+        <span>Высокий</span>
+      </div>
+      <div class="dropdown-item">
+        <i class="icon icon-critical"></i>
+        <span>Критический</span>
       </div>
 
-      <template id="table">
-        <table class="table">
-          <colgroup>
-            <col class="table_col" />
-          </colgroup>
-          <tbody>
-            <tr class="table_title-row">
-              <td>
-                <div class="plus-minus-toggle"></div>
-              </td>
-              <td class="table_title">
-                <p class="table_title-text"></p>
-                <input type="text" class="table_title-input">
-                <button class="table_title_change-text" type="button">
-                  <svg fill="grey" style="padding-left: 10px;" width="14px" height="14px" version="1.1" id="Layer_1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 121.48 122.88" style="enable-background:new 0 0 121.48 122.88" xml:space="preserve">
-                    <g>
-                      <path
-                        d="M96.84,2.22l22.42,22.42c2.96,2.96,2.96,7.8,0,10.76l-12.4,12.4L73.68,14.62l12.4-12.4 C89.04-0.74,93.88-0.74,96.84,2.22L96.84,2.22z M70.18,52.19L70.18,52.19l0,0.01c0.92,0.92,1.38,2.14,1.38,3.34 c0,1.2-0.46,2.41-1.38,3.34v0.01l-0.01,0.01L40.09,88.99l0,0h-0.01c-0.26,0.26-0.55,0.48-0.84,0.67h-0.01 c-0.3,0.19-0.61,0.34-0.93,0.45c-1.66,0.58-3.59,0.2-4.91-1.12h-0.01l0,0v-0.01c-0.26-0.26-0.48-0.55-0.67-0.84v-0.01 c-0.19-0.3-0.34-0.61-0.45-0.93c-0.58-1.66-0.2-3.59,1.11-4.91v-0.01l30.09-30.09l0,0h0.01c0.92-0.92,2.14-1.38,3.34-1.38 c1.2,0,2.41,0.46,3.34,1.38L70.18,52.19L70.18,52.19L70.18,52.19z M45.48,109.11c-8.98,2.78-17.95,5.55-26.93,8.33 C-2.55,123.97-2.46,128.32,3.3,108l9.07-32v0l-0.03-0.03L67.4,20.9l33.18,33.18l-55.07,55.07L45.48,109.11L45.48,109.11z M18.03,81.66l21.79,21.79c-5.9,1.82-11.8,3.64-17.69,5.45c-13.86,4.27-13.8,7.13-10.03-6.22L18.03,81.66L18.03,81.66z" />
-                    </g>
-                  </svg>
-                </button>
-                <button class="table_title_change-text table_title_cansel" type="button">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 60.963 60.842"
-                    style="enable-background:new 0 0 60.963 60.842;" xml:space="preserve" width="12px" height="12px">
-                    <path style="fill:#cf2121;" d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
-             c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
-             l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-             l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-             C61.42,57.647,61.42,54.687,59.595,52.861z" />
-                  </svg>
-                </button>
-                <button class="table_title_change-text table_title_done" type="button">
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                    viewBox="0 0 256 256" xml:space="preserve" width="15px" height="15px">
-                    <defs>
-                    </defs>
-                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                      <circle cx="45" cy="45" r="45"
-                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(212, 212, 212); fill-rule: nonzero; opacity: 1;"
-                        transform="  matrix(1 0 0 1 0 0) " />
-                      <path
-                        d="M 38.478 64.5 c -0.01 0 -0.02 0 -0.029 0 c -1.3 -0.009 -2.533 -0.579 -3.381 -1.563 L 21.59 47.284 c -1.622 -1.883 -1.41 -4.725 0.474 -6.347 c 1.884 -1.621 4.725 -1.409 6.347 0.474 l 10.112 11.744 L 61.629 27.02 c 1.645 -1.862 4.489 -2.037 6.352 -0.391 c 1.862 1.646 2.037 4.49 0.391 6.352 l -26.521 30 C 40.995 63.947 39.767 64.5 38.478 64.5 z"
-                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
-                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                    </g>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            <tr class="main-table-out-container main-table-out-container-show">
-              <td></td>
-              <td class="main-table-container">
-                <table class="main-table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <img src="./images/favorite.png" alt="#" width="16px" height="16px">
-                      </th>
-                      <th>
-                        <img src="./images/planet-earth.png" alt="#" width="16px" height="16px">
-                      </th>
-                      <th>Имя</th>
-                      <th>
-                        <img src="./images/settings.png" alt="#" width="16px" height="16px">
-                      </th>
-                      <th>Прогресс</th>
-                      <th>
-                        <img src="./images/check-mark.png" alt="#" width="16px" height="16px">
-                      </th>
-                      <th>
-                        <img src="./images/circular-arrow_524.png" alt="#" width="16px" height="16px">
-                      </th>
-                      <th>Потоки</th>
-                      <th>Максимум</th>
-                    </tr>
-                  </thead>
-
-                  <tbody class="table_body">
-                    <template id="row">
-                      <tr class="table_row" role="button">
-                        <td class="td-status"></td>
-                        <td class="td-browser"></td>
-                        <td class="td-name"></td>
-                        <td class="td-setting"></td>
-                        <td class="td-progress"></td>
-                        <td class="td-done"></td>
-                        <td class="td-tries"></td>
-                        <td class="td-streams"></td>
-                        <td class="td-maximum"></td>
-                      </tr>
-                    </template>
-
-                    <template id="tab">
-                      <tr class="tab_row">
-                        <td class="tab_td" colspan="9">
-
-                          <section class="tab_container">
-
-                            <button class="tab_button" id="btn_setting">Настройки</button>
-                            <button class="tab_button" id="btn_log">Лог</button>
-
-                            <div class="panel">
-
-                            </div>
-
-                            <table class="tab">
-                              <tbody class="panel">
-                                <tr>
-                                  <td class="tab_setting_item">Сколько делать</td>
-                                  <td class="tab_setting_item">
-                                    <input type="text" class="tab_input_howMuchToDo">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="tab_setting_item">Максимум потоков</td>
-                                  <td class="tab_setting_item">
-                                    <input type="text" class="tab_input_maximumFlows">
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="tab_setting_item">Приоритет</td>
-                                  <td class="tab_setting_item">
-                                    <select name="priority" id="priority">
-                                      <option value="low">Низкий</option>
-                                      <option value="average">Средний</option>
-                                      <option value="high">Высокий</option>
-                                      <option value="critical">Критический</option>
-                                    </select>
-                                  </td>
-                                </tr>
-                              </tbody>
-                              <tbody class="panel">
-                                <tr>
-                                  <td colspan="2">
-                                    <ul>
-                                      <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-                                      <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-                                    </ul>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </section>
-                        </td>
-                      </tr>
-                    </template>
-
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </template>
-  </main>
-
-  <div class="popup">
-    <div class="context-menu">
-      <ul class="context-menu_list">
-        <li class="context-menu_item">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            fill="none" viewBox="0 0 20 20" width="16px" height="16px">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7.75 4H19M7.75 4a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 4h2.25m13.5 6H19m-2.25 0a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 10h11.25m-4.5 6H19M7.75 16a2.25 2.25 0 0 1-4.5 0m4.5 0a2.25 2.25 0 0 0-4.5 0M1 16h2.25" />
-          </svg>
-          Настройки
-        </li>
-        <li class="context-menu_item">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor" viewBox="0 0 14 16" width="16px" height="16px">
-            <path
-              d="M0 .984v14.032a1 1 0 0 0 1.506.845l12.006-7.016a.974.974 0 0 0 0-1.69L1.506.139A1 1 0 0 0 0 .984Z" />
-          </svg>
-          Запустить
-        </li>
-        <li class="context-menu_item">
-          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve"
-            width="16px" height="16px">
-            <circle style="fill:#1046aa;" cx="29" cy="29" r="29" />
-            <g>
-              <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
-              <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
-            </g>
-          </svg>
-          Остановить
-        </li>
-        <li class="context-menu_item">
-          <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve"
-            width="16px" height="16px">
-            <circle style="fill:#cf2121;" cx="29" cy="29" r="29" />
-            <g>
-              <rect x="16" y="16" style="fill:#FFFFFF;" width="26" height="26" />
-              <path style="fill:#FFFFFF;" d="M43,43H15V15h28V43z M17,41h24V17H17V41z" />
-            </g>
-          </svg>
-          Прервать
-        </li>
-        <div class="context-menu_divide-line"></div>
-        <li class="context-menu_item">
-          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            x="0px" y="0px" viewBox="0 0 60.963 60.842" style="enable-background:new 0 0 60.963 60.842;"
-            xml:space="preserve" width="16px" height="16px">
-            <path style="fill:#cf2121;" d="M59.595,52.861L37.094,30.359L59.473,7.98c1.825-1.826,1.825-4.786,0-6.611
-       c-1.826-1.825-4.785-1.825-6.611,0L30.483,23.748L8.105,1.369c-1.826-1.825-4.785-1.825-6.611,0c-1.826,1.826-1.826,4.786,0,6.611
-       l22.378,22.379L1.369,52.861c-1.826,1.826-1.826,4.785,0,6.611c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-       l22.502-22.502l22.501,22.502c0.913,0.913,2.109,1.369,3.306,1.369s2.393-0.456,3.306-1.369
-       C61.42,57.647,61.42,54.687,59.595,52.861z" />
-          </svg>
-          Удалить
-        </li>
-      </ul>
     </div>
+
   </div>
 
-  <section class="tab_container">
-    <input class="tab_input" type="radio" id="tab_setting" checked="checked" name="tabs">
-    <label class="tab_label" for="tab_setting">Настройки</label>
-    <div class="tab_panel">
-      <div class="tab_setting">
-        <div class="tab_inputs-label">
-          <p>Сколько делать</p>
-          <p>Максимум потоков</p>
-          <p>Приоритет</p>
-        </div>
-        <div class="tab_inputs">
-          <input type="text" class="tab_input_howMuchToDo">
-          <input type="text" class="tab_input_maximumFlows">
-          <select name="priority" id="priority">
-            <option value="low">Низкий</option>
-            <option value="average">Средний</option>
-            <option value="high">Высокий</option>
-            <option value="critical">Критический</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <input class="tab_input" type="radio" id="tab_log" name="tabs">
-    <label class="tab_label" for="tab_log">Лог</label>
-    <div class="tab_panel tab_log">
-      <ul>
-        <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-        <li>i 12:39:21 467|7 платных результата | эльдоради</li>
-      </ul>
-    </div>
-  </section>
-
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
