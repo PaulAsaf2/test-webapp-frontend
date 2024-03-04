@@ -4,47 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Dropdown</title>
+  <title>Test JS</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/x-icon;,">
 </head>
 
 <body>
 
-  <div class="custom-dropdown">
+<div>
+  <input
+    type="range"
+    class="range"
+    id="range"
+    min="1"
+    max="5"
+    list="value"
+  />
+  <datalist id="value">
+    <option value="1" label="0.5"></option>
+    <option value="1" label="1"></option>
+    <option value="2" label="2"></option>
+    <option value="3" label="3"></option>
+    <option value="4" label="4"></option>
+  </datalist>
+</div>
 
-    <div class="dropdown-header">
-      <div>
-        <i class="icon"></i>
-        <span id="selected-item"></span>
-      </div>
-      <i class="icon icon-arrow"></i>
-    </div>
-
-    <div class="dropdown-body">
-
-      <div class="dropdown-item">
-        <i class="icon icon-low"></i>
-        <span>Низкий</span>
-      </div>
-      <div class="dropdown-item">
-        <i class="icon icon-medium"></i>
-        <span>Средний</span>
-      </div>
-      <div class="dropdown-item">
-        <i class="icon icon-high"></i>
-        <span>Высокий</span>
-      </div>
-      <div class="dropdown-item">
-        <i class="icon icon-critical"></i>
-        <span>Критический</span>
-      </div>
-
-    </div>
-
-  </div>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 
 </html>
