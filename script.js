@@ -1,11 +1,15 @@
 'use strict'
 
-const input = document.getElementById('range')
+const sliderEl = document.querySelector("#range")
 
-input.addEventListener('input', (event) => {
-  let curValue = event.target.value;
-  let progress = (curValue / input.max) * 100;
+sliderEl.addEventListener("input", (event) => {
+  let sliderValue = event.target.value;
+  let percent = (sliderValue == 2) ? 25
+              : (sliderValue == 3) ? 50
+              : (sliderValue == 4) ? 75
+              : (sliderValue == 5) ? 100
+              : 0;
 
-  input.style.background = `linear-gradient(to right, black ${progress}%, white ${progress}%)`
-
+  sliderEl.style.background = `
+    linear-gradient(to right, #5C52C0 ${percent}%, #F1F0F2 ${percent}%)`;
 })

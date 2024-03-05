@@ -11,22 +11,21 @@
 
 <body>
 
-<div>
+<div class="range-slider">
   <input
     type="range"
-    class="range"
-    id="range"
     min="1"
     max="5"
-    list="value"
+    value="1"
+    id="range"
   />
-  <datalist id="value">
-    <option value="1" label="0.5"></option>
-    <option value="1" label="1"></option>
-    <option value="2" label="2"></option>
-    <option value="3" label="3"></option>
-    <option value="4" label="4"></option>
-  </datalist>
+  <div class="sliderticks">
+    <span>0.5</span>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+  </div>
 </div>
 
 <script src="script.js"></script>
