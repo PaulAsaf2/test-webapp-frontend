@@ -1,9 +1,20 @@
 body {
   height: 100vh;
-  background-color: #3498db;
+  background-color: #9334db;
   font-family: Tahoma, Verdana, sans-serif;
   font-size: 26px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+}
+
+#playPauseButton {
+  font-size: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#currentLetter {
+  font-size: 24px;
+  margin-top: 20px;
 }
