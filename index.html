@@ -35,11 +35,13 @@
   <div id="currentLetter">Press Play to start</div>
 
   <script>
-       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let audioBuffers = { letters: {}, numbers: {} };
     let isPlaying = false;
     let currentIndex = 0;
     let timerId = null;
+    let currentSources = [];
+    let isSoundPlaying = false;
 
     // Функция для загрузки аудиофайлов
     async function loadAudioFile(type, key) {
@@ -55,8 +57,14 @@
         const source = audioContext.createBufferSource();
         source.buffer = buffer;
         source.connect(audioContext.destination);
-        source.onended = resolve;
+        source.onended = () => {
+          resolve();
+          currentSources = currentSources.filter(s => s !== source);
+          isSoundPlaying = false;
+        };
         source.start();
+        currentSources.push(source);
+        isSoundPlaying = true;
       });
     }
 
@@ -69,7 +77,7 @@
 
     // Запуск цикла воспроизведения
     async function playNextPoint(sequence) {
-      if (isPlaying && currentIndex < sequence.length) {
+      if (isPlaying && currentIndex < sequence.length && !isSoundPlaying) {
         const point = sequence[currentIndex];
         const letter = point.match(/[A-D]/)[0];
         const number = point.match(/\d+/)[0];
@@ -86,8 +94,8 @@
         await playPoint(letter, number);
 
         currentIndex++;
-        timerId = setTimeout(() => playNextPoint(sequence), 200); // Пауза между точками
-      } else {
+        timerId = setTimeout(() => playNextPoint(sequence), 2000); // Пауза между точками
+      } else if (!isPlaying) {
         stopLoop();
       }
     }
@@ -96,19 +104,21 @@
     function stopLoop() {
       isPlaying = false;
       clearTimeout(timerId);
+      currentSources.forEach(source => source.stop());
+      currentSources = [];
       document.getElementById('playPauseButton').textContent = 'Play';
     }
 
     // Обработчик кнопки Play/Pause
-    document.getElementById('playPauseButton').addEventListener('click', () => {
+    document.getElementById('playPauseButton').addEventListener('click', async () => {
       if (audioContext.state === 'suspended') {
-        audioContext.resume();
+        await audioContext.resume();
       }
       if (isPlaying) {
         stopLoop();
         document.getElementById('currentLetter').textContent = 'Paused';
       } else {
-        const sequence = ['A1', 'C45', 'D11', 'B15']; // Здесь может быть любая последовательность
+        const sequence = ['A1', 'B2', 'C3', 'D4', 'A11', 'B22', 'C33', 'D44']; // Здесь может быть любая последовательность
         isPlaying = true;
         document.getElementById('playPauseButton').textContent = 'Pause';
         playNextPoint(sequence);
