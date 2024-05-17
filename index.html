@@ -4,31 +4,115 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Test JS</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/x-icon;,">
+  <title>Audio Loop</title>
+  <style>
+    body {
+      height: 100vh;
+      background-color: #34dbcd;
+      font-family: Tahoma, Verdana, sans-serif;
+      font-size: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    #playPauseButton {
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    #currentLetter {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
+  <button id="playPauseButton">Play</button>
+  <div id="currentLetter">Press Play to start</div>
 
-<div class="range-slider">
-  <input
-    type="range"
-    min="1"
-    max="5"
-    value="1"
-    id="range"
-  />
-  <div class="sliderticks">
-    <span>0.5</span>
-    <span>1</span>
-    <span>2</span>
-    <span>3</span>
-    <span>4</span>
-  </div>
-</div>
+  <script>
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let audioBuffers = { letters: {}, numbers: {} };
+    let isPlaying = false;
+    let currentIndex = 0;
+    let intervalId = null;
 
-<script src="script.js"></script>
+    // Функция для загрузки аудиофайлов
+    async function loadAudioFile(type, key) {
+      const response = await fetch(`audio/${key}.mp3`);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+      audioBuffers[type][key] = audioBuffer;
+    }
+
+    // Воспроизведение звука
+    function playSound(buffer) {
+      return new Promise((resolve) => {
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioContext.destination);
+        source.onended = resolve;
+        source.start();
+      });
+    }
+
+    // Воспроизведение точки (буква и число)
+    async function playPoint(letter, number) {
+      await playSound(audioBuffers.letters[letter]);
+      await new Promise(resolve => setTimeout(resolve, 200)); // Пауза между воспроизведением буквы и числа
+      await playSound(audioBuffers.numbers[number]);
+    }
+
+    // Циклическое воспроизведение
+    async function startLoop(sequence) {
+      while (isPlaying && currentIndex < sequence.length) {
+        const point = sequence[currentIndex];
+        const letter = point.match(/[A-D]/)[0];
+        const number = point.match(/\d+/)[0];
+
+        document.getElementById('currentLetter').textContent = point;
+
+        if (!audioBuffers.letters[letter]) {
+          await loadAudioFile('letters', letter);
+        }
+        if (!audioBuffers.numbers[number]) {
+          await loadAudioFile('numbers', number);
+        }
+
+        await playPoint(letter, number);
+
+        currentIndex++;
+        if (currentIndex >= sequence.length) {
+          stopLoop();
+        }
+      }
+    }
+
+    // Остановка цикла
+    function stopLoop() {
+      isPlaying = false;
+      document.getElementById('playPauseButton').textContent = 'Play';
+    }
+
+    // Обработчик кнопки Play/Pause
+    document.getElementById('playPauseButton').addEventListener('click', () => {
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      if (isPlaying) {
+        stopLoop();
+        document.getElementById('currentLetter').textContent = 'Paused';
+      } else {
+        const sequence = ['A1', 'C45', 'D11', 'B15']; // Здесь может быть любая последовательность
+        isPlaying = true;
+        document.getElementById('playPauseButton').textContent = 'Pause';
+        startLoop(sequence);
+      }
+    });
+  </script>
 </body>
 
 </html>

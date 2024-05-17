@@ -1,15 +1,72 @@
-'use strict'
+let isPlaying = false;
+let currentIndex = 0;
+const sequence = ['A1', 'C45', 'D11', 'B15']; // Здесь может быть любая последовательность
 
-const sliderEl = document.querySelector("#range")
+const audioElements = {
+    letters: {
+        A: new Audio('audio/A.mp3'),
+        B: new Audio('audio/B.mp3'),
+        C: new Audio('audio/C.mp3'),
+        D: new Audio('audio/D.mp3')
+    },
+    numbers: {}
+};
 
-sliderEl.addEventListener("input", (event) => {
-  let sliderValue = event.target.value;
-  let percent = (sliderValue == 2) ? 25
-              : (sliderValue == 3) ? 50
-              : (sliderValue == 4) ? 75
-              : (sliderValue == 5) ? 100
-              : 0;
+// Функция для загрузки аудиофайлов чисел
+async function loadNumberAudio(number) {
+    if (!audioElements.numbers[number]) {
+        audioElements.numbers[number] = new Audio(`audio/${number}.mp3`);
+    }
+}
 
-  sliderEl.style.background = `
-    linear-gradient(to right, #5C52C0 ${percent}%, #F1F0F2 ${percent}%)`;
-})
+// Воспроизведение точки (буква и число)
+async function playPoint(letter, number) {
+    return new Promise((resolve) => {
+        audioElements.letters[letter].play();
+        audioElements.letters[letter].onended = () => {
+            setTimeout(() => {
+                audioElements.numbers[number].play();
+                audioElements.numbers[number].onended = resolve;
+            }, 200); // Пауза между воспроизведением буквы и числа
+        };
+    });
+}
+
+// Циклическое воспроизведение
+async function startLoop() {
+    while (isPlaying && currentIndex < sequence.length) {
+        const point = sequence[currentIndex];
+        const letter = point.match(/[A-D]/)[0];
+        const number = point.match(/\d+/)[0];
+
+        document.getElementById('currentLetter').textContent = point;
+
+        await loadNumberAudio(number);
+        await playPoint(letter, number);
+
+        currentIndex++;
+        if (currentIndex >= sequence.length) {
+            stopLoop();
+        } else {
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Пауза в 2 секунды между точками
+        }
+    }
+}
+
+// Остановка цикла
+function stopLoop() {
+    isPlaying = false;
+    document.getElementById('playPauseButton').textContent = 'Play';
+}
+
+// Обработчик кнопки Play/Pause
+document.getElementById('playPauseButton').addEventListener('click', async () => {
+    if (isPlaying) {
+        stopLoop();
+        document.getElementById('currentLetter').textContent = 'Paused';
+    } else {
+        isPlaying = true;
+        document.getElementById('playPauseButton').textContent = 'Pause';
+        startLoop();
+    }
+});
