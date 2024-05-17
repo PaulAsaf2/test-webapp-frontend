@@ -35,11 +35,11 @@
   <div id="currentLetter">Press Play to start</div>
 
   <script>
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+       const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     let audioBuffers = { letters: {}, numbers: {} };
     let isPlaying = false;
     let currentIndex = 0;
-    let intervalId = null;
+    let timerId = null;
 
     // Функция для загрузки аудиофайлов
     async function loadAudioFile(type, key) {
@@ -67,9 +67,9 @@
       await playSound(audioBuffers.numbers[number]);
     }
 
-    // Циклическое воспроизведение
-    async function startLoop(sequence) {
-      while (isPlaying && currentIndex < sequence.length) {
+    // Запуск цикла воспроизведения
+    async function playNextPoint(sequence) {
+      if (isPlaying && currentIndex < sequence.length) {
         const point = sequence[currentIndex];
         const letter = point.match(/[A-D]/)[0];
         const number = point.match(/\d+/)[0];
@@ -86,15 +86,16 @@
         await playPoint(letter, number);
 
         currentIndex++;
-        if (currentIndex >= sequence.length) {
-          stopLoop();
-        }
+        timerId = setTimeout(() => playNextPoint(sequence), 200); // Пауза между точками
+      } else {
+        stopLoop();
       }
     }
 
     // Остановка цикла
     function stopLoop() {
       isPlaying = false;
+      clearTimeout(timerId);
       document.getElementById('playPauseButton').textContent = 'Play';
     }
 
@@ -110,7 +111,7 @@
         const sequence = ['A1', 'C45', 'D11', 'B15']; // Здесь может быть любая последовательность
         isPlaying = true;
         document.getElementById('playPauseButton').textContent = 'Pause';
-        startLoop(sequence);
+        playNextPoint(sequence);
       }
     });
   </script>
