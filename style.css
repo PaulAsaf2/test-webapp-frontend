@@ -18,8 +18,9 @@ body {
   box-sizing: border-box;
 }
 
-a, p, h1, h2, h3 {
+a, p, h1, h2, h3, input, button, textarea {
   margin: 0;
+  padding: 0;
 }
 
 /* HEADER */
@@ -79,17 +80,15 @@ a, p, h1, h2, h3 {
   border-radius: 6px;
 }
 
-/* GENERATION */
-
-.generation,
-.generation_result {
-  margin-top: 20px;
-}
-
 /* ACCOUNT */
 
 .account {
   display: none;
+}
+
+.account_header {
+  display: flex;
+  justify-content: space-between;
 }
 
 .account_title {
@@ -97,29 +96,77 @@ a, p, h1, h2, h3 {
   font-size: large;
 }
 
-.token_title {
-  text-align: center;
-  font-size: large;
-  font-weight: 400;
+.logout_btn {
+  cursor: pointer;  
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: #E13E3E;
+  font-size: medium;
+  transition: .3s;
+}
+
+.logout_btn:hover {
+  color: darkred;
+}
+
+/* GENERATION */
+
+.generation {
   margin: 20px 0;
 }
 
-.tokens_container {
-  display: flex;
-  column-gap: 20px;
-}
-
-.token_container {
-  /* outline: thin solid red; */
-  background-color: #e2d6f6;
-  border-radius: 6px;
+.generate_form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  row-gap: 6px;
-  padding: 6px;
+  align-items: flex-start;
+  row-gap: 12px;
+}
+
+.generate_form_bottom {
+  margin-top: 20px;
+}
+
+.textarea_input {
+  align-self: stretch;
+  border: none;
+  outline: 2px solid #DFDFDF;
+  border-radius: 10px;
+  font-size: large;
+  padding: 4px;
+  transition: 0.3s;
+}
+
+.textarea_input:focus {
+  outline: 2px solid #e3cac5;
+}
+
+.generation_btn {
+  font-size: medium;
+  padding: 10px 24px;
+  border-radius: 15px;
+  border: none;
+  background-color: #461D8C;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.generation_btn:hover {
+  background-color: #291052;
+}
+
+/* TOKEN */
+
+.token {
+  display: flex;
+  column-gap: 20px;
+  border-top: 1px dotted #E13E3E;
+  padding-top: 10px;
+}
+
+.token_title {
+  font-size: medium;
+  font-weight: 400;
 }
 
 .token_icon {
@@ -129,19 +176,6 @@ a, p, h1, h2, h3 {
 
 .token_value {
   font-weight: bold;
-  font-size: large;
-}
-
-.logout_btn {
-  cursor: pointer;  
-  background-color: #b83535;
-  border: none;
-  color: white;
-  padding: 6px 20px;
-  border-radius: 4px;
-  display: block;
-  margin-left: auto;
-  margin-top: 20px;
 }
 
 /* ------------- */
