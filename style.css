@@ -1,13 +1,13 @@
-body {
-  /* height: 100vh; */
-  /* background-color: #9334db; */
+/* body {
+  height: 100vh;
+  background-color: #9334db;
   font-family: Arial, sans-serif;
   font-size: medium;
-  /* font-size: 26px; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: flex-start; */
-}
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+} */
 
 body {
   font-family: Arial, sans-serif;
@@ -77,6 +77,13 @@ a, p, h1, h2, h3 {
   color: white;
   padding: 6px;
   border-radius: 6px;
+}
+
+/* GENERATION */
+
+.generation,
+.generation_result {
+  margin-top: 20px;
 }
 
 /* ACCOUNT */

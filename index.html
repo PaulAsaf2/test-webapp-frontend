@@ -1,44 +1,65 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header class="header">
-      <a class="logo_text" href="https://neurohelpers.com/" target="_blank">
-        <img src="./images/logo-black.png" alt="Logo" class="logo_icon">
-      </a>
-    </header>
+<html lang="en">
 
-    <img class="loading_icon" src="./images/loading.svg" alt="Loading icon">
-    
-    <section class="signin">
-      <form class="signin_form">
-        <input placeholder="Логин или эл. почта" class="form_input" type="text" name="login" id="login">
-        <input placeholder="Пароль" class="form_input" type="password" name="password" id="password">
-        <input class="form_submit" type="submit" value="Войти">
-      </form>
-    </section>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension</title>
+  <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+  <header class="header">
+    <a class="logo_text" href="https://neurohelpers.com/" target="_blank">
+      <img src="./images/logo-black.png" alt="Logo" class="logo_icon">
+    </a>
+  </header>
+
+  <img class="loading_icon" src="./images/loading.svg" alt="Loading icon">
   
-    <section class="account content_show">
-      <h1 class="account_title"></h1>
-      <h2 class="token_title">У вас осталось токенов:</h2>
-      <div class="tokens_container">
-        <div class="token_container">
-          Текст
-          <img class="token_icon" src="./images/text.png" alt="Text icon">
-          <p id="token_text" class="token_value"></p>
-        </div>
-        <div class="token_container">
-          Изображения
-          <img class="token_icon" src="./images/image.png" alt="Image icon">
-          <p id="token_image" class="token_value"></p>
-        </div>
-      </div>
-      <button class="logout_btn" type="button">Выйти</button>
-    </section>
+  <section class="signin">
+    <form class="signin_form">
+      <input placeholder="Логин или эл. почта" class="form_input" type="text" name="login" id="login">
+      <input placeholder="Пароль" class="form_input" type="password" name="password" id="password">
+      <input class="form_submit" type="submit" value="Войти">
+    </form>
+  </section>
 
-    <script src="sidepanel.js" type="module"></script>
-  </body>
+  <section class="account">
+    <h1 class="account_title"></h1>
+
+    <section class="generation">
+      <form name="generation" class="signin_form">
+        <label for="request_input">С каким текстом помочь?</label>
+        <textarea name="request_input" id="request_input" cols="30" rows="3"></textarea>
+        <div>
+          <input class="request_submit" type="submit" value="Сгенерировать">
+        </div>
+      </form>
+      <div class="signin_form generation_result">
+        <label for="request_input">Результат</label>
+        <textarea name="result_input" id="result_input" cols="30" rows="3"></textarea>
+        <button class="result_copy" type="button">Скопировать</button>
+      </div>
+    </section>
+    
+    <h2 class="token_title">У вас осталось токенов:</h2>
+    <div class="tokens_container">
+      <div class="token_container">
+        Текст
+        <img class="token_icon" src="./images/text.png" alt="Text icon">
+        <p id="token_text" class="token_value"></p>
+      </div>
+      <div class="token_container">
+        Изображения
+        <img class="token_icon" src="./images/image.png" alt="Image icon">
+        <p id="token_image" class="token_value"></p>
+      </div>
+    </div>
+    <button class="logout_btn" type="button">Выйти</button>
+  </section>
+  <script type="module" src="script.js"></script>
+</body>
+
 </html>
