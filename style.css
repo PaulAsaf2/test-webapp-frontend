@@ -1,20 +1,155 @@
 body {
-  height: 100vh;
-  background-color: #9334db;
-  font-family: Tahoma, Verdana, sans-serif;
-  font-size: 26px;
+  /* height: 100vh; */
+  /* background-color: #9334db; */
+  font-family: Arial, sans-serif;
+  font-size: medium;
+  /* font-size: 26px; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: flex-start; */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: medium;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a, p, h1, h2, h3 {
+  margin: 0;
+}
+
+/* HEADER */
+
+.header {
+  /* border-bottom: 2px solid gray; */
+  border: 10px solid;
+  border-image: linear-gradient(to right, #7b5ade, #577ce0, #9462c8) 1;
+  border-width: 0 0 2px 0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+}
+
+.logo_text {
+  text-decoration: none;
+  color: black;
+  font-size: large;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  column-gap: 10px;
 }
 
-#playPauseButton {
-  font-size: 20px;
-  padding: 10px 20px;
+.logo_icon {
+  width: auto;
+  height: 38px;
+}
+
+/* SIGNIN */
+
+.signin {
+  display: none;
+}
+
+.signin_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.form_input {
+  width: 50%;
+  border-radius: 6px;
+  border: none;
+  outline: thin solid lightblue;
+  padding: 6px;
+}
+
+.form_submit {
   cursor: pointer;
+  width: 50%;
+  background: linear-gradient(90deg, #7b5ade 0%, #577ce0 35%, #9462c8 100%);
+  border: none;
+  color: white;
+  padding: 6px;
+  border-radius: 6px;
 }
 
-#currentLetter {
-  font-size: 24px;
+/* ACCOUNT */
+
+.account {
+  display: none;
+}
+
+.account_title {
+  text-align: center;
+  font-size: large;
+}
+
+.token_title {
+  text-align: center;
+  font-size: large;
+  font-weight: 400;
+  margin: 20px 0;
+}
+
+.tokens_container {
+  display: flex;
+  column-gap: 20px;
+}
+
+.token_container {
+  /* outline: thin solid red; */
+  background-color: #e2d6f6;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  row-gap: 6px;
+  padding: 6px;
+}
+
+.token_icon {
+  height: 36px;
+  width: 36px;
+}
+
+.token_value {
+  font-weight: bold;
+  font-size: large;
+}
+
+.logout_btn {
+  cursor: pointer;  
+  background-color: #b83535;
+  border: none;
+  color: white;
+  padding: 6px 20px;
+  border-radius: 4px;
+  display: block;
+  margin-left: auto;
   margin-top: 20px;
+}
+
+/* ------------- */
+
+.loading_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  width: 48px;
+  height: 48px;
+  margin: auto;
+}
+
+.content_show {
+  display: block;
 }

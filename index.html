@@ -1,130 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo_text" href="https://neurohelpers.com/" target="_blank">
+        <img src="./images/logo-black.png" alt="Logo" class="logo_icon">
+      </a>
+    </header>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <title>Audio Loop</title>
-  <style>
-    body {
-      height: 100vh;
-      background-color: #34dbcd;
-      font-family: Tahoma, Verdana, sans-serif;
-      font-size: 26px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
+    <img class="loading_icon" src="./images/loading.svg" alt="Loading icon">
+    
+    <section class="signin">
+      <form class="signin_form">
+        <input placeholder="Логин или эл. почта" class="form_input" type="text" name="login" id="login">
+        <input placeholder="Пароль" class="form_input" type="password" name="password" id="password">
+        <input class="form_submit" type="submit" value="Войти">
+      </form>
+    </section>
+  
+    <section class="account content_show">
+      <h1 class="account_title"></h1>
+      <h2 class="token_title">У вас осталось токенов:</h2>
+      <div class="tokens_container">
+        <div class="token_container">
+          Текст
+          <img class="token_icon" src="./images/text.png" alt="Text icon">
+          <p id="token_text" class="token_value"></p>
+        </div>
+        <div class="token_container">
+          Изображения
+          <img class="token_icon" src="./images/image.png" alt="Image icon">
+          <p id="token_image" class="token_value"></p>
+        </div>
+      </div>
+      <button class="logout_btn" type="button">Выйти</button>
+    </section>
 
-    #playPauseButton {
-      font-size: 20px;
-      padding: 10px 20px;
-      cursor: pointer;
-    }
-
-    #currentLetter {
-      font-size: 24px;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-
-<body>
-  <button id="playPauseButton">Play</button>
-  <div id="currentLetter">Press Play to start</div>
-
-  <script>
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    let audioBuffers = { letters: {}, numbers: {} };
-    let isPlaying = false;
-    let currentIndex = 0;
-    let timerId = null;
-    let currentSources = [];
-    let isSoundPlaying = false;
-
-    // Функция для загрузки аудиофайлов
-    async function loadAudioFile(type, key) {
-      const response = await fetch(`audio/${key}.mp3`);
-      const arrayBuffer = await response.arrayBuffer();
-      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-      audioBuffers[type][key] = audioBuffer;
-    }
-
-    // Воспроизведение звука
-    function playSound(buffer) {
-      return new Promise((resolve) => {
-        const source = audioContext.createBufferSource();
-        source.buffer = buffer;
-        source.connect(audioContext.destination);
-        source.onended = () => {
-          resolve();
-          currentSources = currentSources.filter(s => s !== source);
-          isSoundPlaying = false;
-        };
-        source.start();
-        currentSources.push(source);
-        isSoundPlaying = true;
-      });
-    }
-
-    // Воспроизведение точки (буква и число)
-    async function playPoint(letter, number) {
-      await playSound(audioBuffers.letters[letter]);
-      await new Promise(resolve => setTimeout(resolve, 200)); // Пауза между воспроизведением буквы и числа
-      await playSound(audioBuffers.numbers[number]);
-    }
-
-    // Запуск цикла воспроизведения
-    async function playNextPoint(sequence) {
-      if (isPlaying && currentIndex < sequence.length && !isSoundPlaying) {
-        const point = sequence[currentIndex];
-        const letter = point.match(/[A-D]/)[0];
-        const number = point.match(/\d+/)[0];
-
-        document.getElementById('currentLetter').textContent = point;
-
-        if (!audioBuffers.letters[letter]) {
-          await loadAudioFile('letters', letter);
-        }
-        if (!audioBuffers.numbers[number]) {
-          await loadAudioFile('numbers', number);
-        }
-
-        await playPoint(letter, number);
-
-        currentIndex++;
-        timerId = setTimeout(() => playNextPoint(sequence), 2000); // Пауза между точками
-      } else if (!isPlaying) {
-        stopLoop();
-      }
-    }
-
-    // Остановка цикла
-    function stopLoop() {
-      isPlaying = false;
-      clearTimeout(timerId);
-      currentSources.forEach(source => source.stop());
-      currentSources = [];
-      document.getElementById('playPauseButton').textContent = 'Play';
-    }
-
-    // Обработчик кнопки Play/Pause
-    document.getElementById('playPauseButton').addEventListener('click', async () => {
-      if (audioContext.state === 'suspended') {
-        await audioContext.resume();
-      }
-      if (isPlaying) {
-        stopLoop();
-        document.getElementById('currentLetter').textContent = 'Paused';
-      } else {
-        const sequence = ['A1', 'B2', 'C3', 'D4', 'A11', 'B22', 'C33', 'D44']; // Здесь может быть любая последовательность
-        isPlaying = true;
-        document.getElementById('playPauseButton').textContent = 'Pause';
-        playNextPoint(sequence);
-      }
-    });
-  </script>
-</body>
-
+    <script src="sidepanel.js" type="module"></script>
+  </body>
 </html>
