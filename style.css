@@ -1,10 +1,18 @@
 body {
   height: 100vh;
-  background-color: #f7f3e9;
+  background-color: #e9f7e9;
   font-family: Arial, sans-serif;
   font-size: medium;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
