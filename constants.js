@@ -2,6 +2,7 @@ const tg = window.Telegram.WebApp
 const mainBtn = tg.MainButton
 const backBtn = tg.BackButton
 const settingsBtn = tg.SettingsButton
+const bioMan = tg.BiometricManager
 
 const main = document.querySelector('.main')
 const second = document.querySelector('.second')
@@ -15,4 +16,5 @@ export {
   second,
   third,
   settingsBtn,
+  bioMan,
 }
