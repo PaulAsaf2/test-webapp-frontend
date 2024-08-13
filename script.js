@@ -4,7 +4,8 @@ import { goToSecondPage, goFromSecondPage } from './scripts/pagination.js'
 
 // validationInitData()
 
-tg.headerColor = '#8dd990'
+tg.setHeaderColor('#8dd990')
+tg.enableClosingConfirmation()
 
 mainBtn.setParams({
   is_visible: true,
@@ -13,27 +14,12 @@ mainBtn.setParams({
 })
 settingsBtn.show()
 
-// tg.showAlert(`
-//   Before:
-//   bioMan.isInited: ${bioMan.isInited},
-//   bioMan.isBiometricAvailable: ${bioMan.isBiometricAvailable}
-// `)
-console.log(
-  bioMan.isInited,
-  bioMan.isBiometricAvailable
-);
-
-bioMan.init()
-
-console.log(
-  bioMan.isInited,
-  bioMan.isBiometricAvailable
-);
-tg.showAlert(`
-  After:
-  bioMan.isInited: ${bioMan.isInited},
-  bioMan.isBiometricAvailable: ${bioMan.isBiometricAvailable}
-`)
+bioMan.init(() => {
+  tg.showAlert(`
+    bioMan.isInited: ${bioMan.isInited},
+    bioMan.isBiometricAvailable: ${bioMan.isBiometricAvailable}
+  `)
+})
 
 // when main page
 mainBtn.onClick(goToSecondPage)
